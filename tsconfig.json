@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "es2015", // <= doesn't help
+      "es6", // <= doesn't help
+    ],
     "target": "es5",
     "module": "commonjs",
     "declaration": true,
