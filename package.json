@@ -1,6 +1,7 @@
 {
   "name": "@axonize/api",
   "version": "0.0.1",
+  "private": false,
   "description": "Axonize API client library",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
