@@ -1,0 +1,5230 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Axonize",
+    "description": "This is the axonize api, welcome! \r\n We have both OData and WebApi controllers. To start trying out endpoints first run the login method in the Auth controller and then paste the token that is returned inside the textbox that says api_key on the top of this page."
+  },
+  "host": "api.axonize.com",
+  "schemes": ["https"],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/api/featureSet": {
+      "get": {
+        "tags": ["FeatureSet"],
+        "summary": "Get featureSets",
+        "operationId": "FeatureSet_Get",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      },
+      "post": {
+        "tags": ["FeatureSet"],
+        "summary": "Create featureSet",
+        "operationId": "FeatureSet_Post",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/FeatureSet" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/dashboards": {
+      "post": {
+        "tags": ["Dashboards"],
+        "summary": "Create dashboard",
+        "operationId": "Dashboards_Post",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Dashboard" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/dashboards/{id}": {
+      "get": {
+        "tags": ["Dashboards"],
+        "summary": "Get dashboard by id",
+        "operationId": "Dashboards_GetDashboardById",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [{ "name": "id", "in": "path", "description": "", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      },
+      "put": {
+        "tags": ["Dashboards"],
+        "summary": "Put dashboard by id",
+        "operationId": "Dashboards_PutById",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "", "required": true, "type": "string" },
+          {
+            "name": "entity",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Dashboard" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      },
+      "delete": {
+        "tags": ["Dashboards"],
+        "summary": "Delete dashboard by id",
+        "operationId": "Dashboards_DeleteById",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [{ "name": "id", "in": "path", "description": "", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      },
+      "patch": {
+        "tags": ["Dashboards"],
+        "summary": "Update dashboard by id",
+        "operationId": "Dashboards_PatchById",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "", "required": true, "type": "string" },
+          { "name": "delta", "in": "body", "description": "", "required": true, "schema": { "type": "object" } }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/auth/roles": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Gets the user's roles",
+        "operationId": "Auth_Roles",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [{ "name": "deleteCache", "in": "query", "required": false, "type": "boolean" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Log in to the system, returns a token that can be used for authenticating calls",
+        "operationId": "Auth_Login",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "loginDetails",
+            "in": "body",
+            "description": "The login details.",
+            "required": true,
+            "schema": { "$ref": "#/definitions/UserLogin" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/locales/{locale}": {
+      "get": {
+        "tags": ["Locales"],
+        "summary": "Get all locales",
+        "operationId": "Locales_GetLanguageDictionaryServiceByLocale",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [{ "name": "locale", "in": "path", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/charts/createChart": {
+      "post": {
+        "tags": ["Charts"],
+        "summary": "Execute a dynamic create chart request and return data points",
+        "operationId": "Charts_CreateChart",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "chart",
+            "in": "body",
+            "description": "The chart definition object",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Chart" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/auth/validateToken": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Validates token sent in header request",
+        "operationId": "Auth_ValidateToken",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/commands/sendCommand": {
+      "post": {
+        "tags": ["Commands"],
+        "summary": "Sends a command",
+        "operationId": "Commands_SendCommand",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "commandRequest",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/CommandRequest" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/CommandResponse" } } }
+      }
+    },
+    "/api/charts/exportChartToCSV": {
+      "post": {
+        "tags": ["Charts"],
+        "summary": "Execute a dynamic create chart request and return a csv file",
+        "operationId": "Charts_ExportChartToCSV",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "chart",
+            "in": "body",
+            "description": "The chart definition object",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Chart" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/analytics/getGpsHistory": {
+      "post": {
+        "tags": ["Analytics"],
+        "summary": "Gets the GPS history",
+        "operationId": "Analytics_GetGPSHistory",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request.",
+            "required": true,
+            "schema": { "$ref": "#/definitions/GPSHistoryRequest" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": { "type": "array", "items": { "$ref": "#/definitions/GPSReadingDTO" } }
+          }
+        }
+      }
+    },
+    "/api/featureSet/appId/{appId}": {
+      "get": {
+        "tags": ["FeatureSet"],
+        "summary": "Get featureSet by app id",
+        "operationId": "FeatureSet_GetByAppId",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [{ "name": "appId", "in": "path", "description": "", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/locales/supportedLanguages": {
+      "get": {
+        "tags": ["Locales"],
+        "summary": "Return supported locales",
+        "operationId": "Locales_GetSupportedLanguages",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/dashboards/getByAppId/{appId}": {
+      "get": {
+        "tags": ["Dashboards"],
+        "summary": "Get dashboard by appId",
+        "operationId": "Dashboards_GetDashboardByAppId",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [{ "name": "appId", "in": "path", "description": "", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/auth/resendmultifactorbindingcode": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Resend the multifactor binding code to the user",
+        "operationId": "Auth_ResendMultifactorBindingCode",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "resendDetails",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": { "$ref": "#/definitions/ResendMultifactorBindingRequest" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/auth/verifymultifactorbindingcode": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Log in to the system using Multifactor Authentication parameters, returns a token that can be used for authenticating calls",
+        "operationId": "Auth_VerifyMultifactorBindingCode",
+        "consumes": ["application/json", "text/json", "text/xml", "application/x-www-form-urlencoded"],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          {
+            "name": "loginDetails",
+            "in": "body",
+            "description": "The login details.",
+            "required": true,
+            "schema": { "$ref": "#/definitions/VerifyMultifactorBindingRequest" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/api/featureSet/unlock/{featureSetId}/{featureId}": {
+      "post": {
+        "tags": ["FeatureSet"],
+        "summary": "Unlock feature from featureSet",
+        "operationId": "FeatureSet_UnlockByFeaturesetidAndFeatureid",
+        "consumes": [],
+        "produces": ["application/json", "text/json", "text/xml"],
+        "parameters": [
+          { "name": "featureSetId", "in": "path", "required": true, "type": "string" },
+          { "name": "featureId", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } }
+      }
+    },
+    "/odata/users": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get all users",
+        "operationId": "Users_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[UserEntity]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create a new user",
+        "operationId": "Users_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "userEntity",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/UserEntity" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/rules": {
+      "get": {
+        "tags": ["Rules"],
+        "summary": "Get all rules",
+        "operationId": "Rules_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Rule]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Rules"],
+        "summary": "Create a new rule",
+        "operationId": "Rules_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "rule",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Rule" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/groups": {
+      "get": {
+        "tags": ["Groups"],
+        "summary": "Get all groups",
+        "operationId": "Groups_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Group]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Groups"],
+        "summary": "Create a new group",
+        "operationId": "Groups_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Group",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Group" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/audits": {
+      "get": {
+        "tags": ["Audits"],
+        "summary": "Get all audit entries",
+        "operationId": "Audits_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Audit]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Audits"],
+        "summary": "Create a new audit entry",
+        "operationId": "Audits_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "audit",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Audit" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Audit" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/tenants": {
+      "get": {
+        "tags": ["Tenants"],
+        "summary": "Get all tenants",
+        "operationId": "Tenants_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Tenant]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Tenants"],
+        "summary": "Create a new tenant",
+        "operationId": "Tenants_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "tenant",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Tenant" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports": {
+      "get": {
+        "tags": ["Reports"],
+        "summary": "Get all reports",
+        "operationId": "Reports_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Report]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Create a new report",
+        "operationId": "Reports_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "report",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Report" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Report" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices": {
+      "get": {
+        "tags": ["Devices"],
+        "summary": "Get all devices",
+        "operationId": "Devices_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Device]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Create a device",
+        "operationId": "Devices_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "device",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Device" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Device" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/products": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get all products",
+        "operationId": "Products_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Product]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Products"],
+        "summary": "Create a new product",
+        "operationId": "Products_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Product" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/rules/{id}": {
+      "get": {
+        "tags": ["Rules"],
+        "summary": "Get rule by id",
+        "operationId": "Rules_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Rule" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Rules"],
+        "summary": "Update rule",
+        "operationId": "Rules_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "rule",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Rule" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Rules"],
+        "summary": "Delete a rule",
+        "operationId": "Rules_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Rules"],
+        "summary": "Patch a rule",
+        "operationId": "Rules_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "rule",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/{id}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get user by id",
+        "operationId": "Users_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/UserEntity" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Users"],
+        "summary": "Update an user",
+        "operationId": "Users_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "userEntity",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/UserEntity" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Users"],
+        "summary": "Delete an user",
+        "operationId": "Users_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Patch an user",
+        "operationId": "Users_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "userEntity",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/audits/{id}": {
+      "get": {
+        "tags": ["Audits"],
+        "summary": "Get audit entry by id",
+        "operationId": "Audits_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Audit" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Audits"],
+        "summary": "Update an audit entry",
+        "operationId": "Audits_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "audit",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Audit" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Audits"],
+        "summary": "Delete an audit entry",
+        "operationId": "Audits_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Audits"],
+        "summary": "Patch an audit entry",
+        "operationId": "Audits_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "audit",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/groups/{id}": {
+      "get": {
+        "tags": ["Groups"],
+        "summary": "Get group by id",
+        "operationId": "Groups_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Group" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Groups"],
+        "summary": "Update a group",
+        "operationId": "Groups_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "Group",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Group" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Groups"],
+        "summary": "Delete a group",
+        "operationId": "Groups_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Groups"],
+        "summary": "Patch a group",
+        "operationId": "Groups_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "Group",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}": {
+      "get": {
+        "tags": ["Devices"],
+        "summary": "Get device by id",
+        "operationId": "Devices_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Device" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Devices"],
+        "summary": "Update a device",
+        "operationId": "Devices_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "device",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Device" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Devices"],
+        "summary": "Delete a device",
+        "operationId": "Devices_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Devices"],
+        "summary": "Patch a device",
+        "operationId": "Devices_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "device",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}": {
+      "get": {
+        "tags": ["Reports"],
+        "summary": "Get report by id",
+        "operationId": "Reports_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Report" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Reports"],
+        "summary": "Update a report",
+        "operationId": "Reports_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "report",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Report" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Reports"],
+        "summary": "Delete a report",
+        "operationId": "Reports_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Reports"],
+        "summary": "Patch a report",
+        "operationId": "Reports_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "report",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/tenants/{id}": {
+      "get": {
+        "tags": ["Tenants"],
+        "summary": "Get tenant by id",
+        "operationId": "Tenants_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Tenant" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Tenants"],
+        "summary": "Update a tenant",
+        "operationId": "Tenants_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "tenant",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Tenant" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Tenants"],
+        "summary": "Delete a tenant",
+        "operationId": "Tenants_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Tenants"],
+        "summary": "Patch a tenant",
+        "operationId": "Tenants_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "tenant",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applications": {
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Get all applications",
+        "operationId": "Applications_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Application]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Applications"],
+        "summary": "Create a new application",
+        "operationId": "Applications_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "application",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Application" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Application" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/notifications": {
+      "get": {
+        "tags": ["Notifications"],
+        "summary": "Get all notifications",
+        "operationId": "Notifications_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[Notification]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["Notifications"],
+        "summary": "Create new notification (Not allowed)",
+        "operationId": "Notifications_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "Notification",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Notification" }
+          },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/products/{id}": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Get product by id",
+        "operationId": "Products_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Product" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Products"],
+        "summary": "Update a product",
+        "operationId": "Products_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "product",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Product" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Products"],
+        "summary": "Delete a product",
+        "operationId": "Products_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Products"],
+        "summary": "Patch a product",
+        "operationId": "Products_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "product",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances": {
+      "get": {
+        "tags": ["AlarmInstances"],
+        "summary": "Get all alarm instances",
+        "operationId": "AlarmInstances_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[AlarmInstance]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["AlarmInstances"],
+        "summary": "Create a new alarm instance",
+        "operationId": "AlarmInstances_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "alarmInstances",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AlarmInstance" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/tenantTemplates": {
+      "get": {
+        "tags": ["TenantTemplates"],
+        "summary": "Get all templates",
+        "operationId": "TenantTemplates_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[TenantTemplate]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["TenantTemplates"],
+        "summary": "Create a new template",
+        "operationId": "TenantTemplates_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "tenantTemplates",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/TenantTemplate" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/TenantTemplate" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/eventLogEntries": {
+      "get": {
+        "tags": ["EventLogEntries"],
+        "summary": "Get all event log entries",
+        "operationId": "EventLogEntries_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[EventLogEntry]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["EventLogEntries"],
+        "summary": "Create a new event log entry",
+        "operationId": "EventLogEntries_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "eventLogEntry",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/EventLogEntry" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applications/{id}": {
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Get application by id",
+        "operationId": "Applications_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Application" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Applications"],
+        "summary": "Update an application",
+        "operationId": "Applications_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "application",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Application" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Applications"],
+        "summary": "Delete an application",
+        "operationId": "Applications_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Applications"],
+        "summary": "Patch an application",
+        "operationId": "Applications_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "application",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/notifications/{id}": {
+      "get": {
+        "tags": ["Notifications"],
+        "summary": "Get notification by id",
+        "operationId": "Notifications_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/Notification" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["Notifications"],
+        "summary": "Update a notification (Not allowed)",
+        "operationId": "Notifications_PutById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "Notification",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["Notifications"],
+        "summary": "Delete a notification (Not allowed)",
+        "operationId": "Notifications_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["Notifications"],
+        "summary": "Patch a notification (Not allowed)",
+        "operationId": "Notifications_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "Notification",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances/{id}": {
+      "get": {
+        "tags": ["AlarmInstances"],
+        "summary": "Get alarm instance by id",
+        "operationId": "AlarmInstances_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/AlarmInstance" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["AlarmInstances"],
+        "summary": "Update an alarm instance",
+        "operationId": "AlarmInstances_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "alarmInstances",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/AlarmInstance" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["AlarmInstances"],
+        "summary": "Delete an alarm instance",
+        "operationId": "AlarmInstances_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["AlarmInstances"],
+        "summary": "Patch an alarm instance",
+        "operationId": "AlarmInstances_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "alarmInstances",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/eventLogEntries/{id}": {
+      "get": {
+        "tags": ["EventLogEntries"],
+        "summary": "Get event log entry by id",
+        "operationId": "EventLogEntries_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/EventLogEntry" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["EventLogEntries"],
+        "summary": "Update an event log entry",
+        "operationId": "EventLogEntries_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "eventLogEntry",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/EventLogEntry" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["EventLogEntries"],
+        "summary": "Delete an event log entry",
+        "operationId": "EventLogEntries_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["EventLogEntries"],
+        "summary": "Patch an event log entry",
+        "operationId": "EventLogEntries_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "eventLogEntry",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/tenantTemplates/{id}": {
+      "get": {
+        "tags": ["TenantTemplates"],
+        "summary": "Get template by id",
+        "operationId": "TenantTemplates_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/TenantTemplate" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["TenantTemplates"],
+        "summary": "Update an template",
+        "operationId": "TenantTemplates_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "tenantTemplates",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/TenantTemplate" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["TenantTemplates"],
+        "summary": "Delete an template",
+        "operationId": "TenantTemplates_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["TenantTemplates"],
+        "summary": "Patch an template",
+        "operationId": "TenantTemplates_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "tenantTemplates",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applicationTemplates": {
+      "get": {
+        "tags": ["ApplicationTemplates"],
+        "summary": "Get all templates",
+        "operationId": "ApplicationTemplates_Get",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$filter",
+            "in": "query",
+            "description": "Filters the results, based on a Boolean condition.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$orderby",
+            "in": "query",
+            "description": "Sorts the results.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$top",
+            "in": "query",
+            "description": "Returns only the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$skip",
+            "in": "query",
+            "description": "Skips the first n results.",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "$count",
+            "in": "query",
+            "description": "Includes a count of the matching results in the response.",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK", "schema": { "$ref": "#/definitions/ODataResponse[List[ApplicationTemplate]]" } }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": ["ApplicationTemplates"],
+        "summary": "Create a new template",
+        "operationId": "ApplicationTemplates_Post",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "ApplicationTemplate",
+            "in": "body",
+            "description": "The entity to post",
+            "required": true,
+            "schema": { "$ref": "#/definitions/ApplicationTemplate" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/ApplicationTemplate" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applicationTemplates/{id}": {
+      "get": {
+        "tags": ["ApplicationTemplates"],
+        "summary": "Get template by id",
+        "operationId": "ApplicationTemplates_GetById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "$expand",
+            "in": "query",
+            "description": "Expands related entities inline.",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "$select",
+            "in": "query",
+            "description": "Selects which properties to include in the response.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/ApplicationTemplate" } } },
+        "deprecated": false
+      },
+      "put": {
+        "tags": ["ApplicationTemplates"],
+        "summary": "Update an template",
+        "operationId": "ApplicationTemplates_PutById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "ApplicationTemplate",
+            "in": "body",
+            "description": "The entity to put",
+            "required": true,
+            "schema": { "$ref": "#/definitions/ApplicationTemplate" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": ["ApplicationTemplates"],
+        "summary": "Delete an template",
+        "operationId": "ApplicationTemplates_DeleteById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          { "name": "If-Match", "in": "header", "description": "If-Match header", "required": false, "type": "string" }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": ["ApplicationTemplates"],
+        "summary": "Patch an template",
+        "operationId": "ApplicationTemplates_PatchById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "ApplicationTemplate",
+            "in": "body",
+            "description": "The entity to patch",
+            "required": true,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/me": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Returns current user",
+        "operationId": "Users_Me",
+        "consumes": [],
+        "produces": ["application/json"],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/invite": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create user with invite mail",
+        "operationId": "Users_Invite",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "invite action parameters",
+            "required": false,
+            "schema": { "type": "object", "properties": { "user": { "$ref": "#/definitions/UserEntity" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applications/url": {
+      "post": {
+        "tags": ["Applications"],
+        "summary": "Validates token sent in header request",
+        "operationId": "Applications_url",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "url action parameters",
+            "required": false,
+            "schema": { "type": "object", "properties": { "url": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/unblockUser": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Unblocks a user",
+        "operationId": "Users_UnblockUser",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "userId": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/share": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Share report between applications and tenants",
+        "operationId": "Reports_ShareById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "applicationIds": { "type": "array", "items": { "type": "string" } },
+                "tenantIds": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/validateEmail": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Validates user email",
+        "operationId": "Users_validateEmail",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "email": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/resetPassword": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Reset password by admin",
+        "operationId": "Users_ResetPassword",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "userId": { "type": "string" }, "url": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances/clear": {
+      "post": {
+        "tags": ["AlarmInstances"],
+        "summary": "Clears (deletes) the selected alarm instances",
+        "operationId": "AlarmInstances_Clear",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": { "type": "object", "properties": { "ids": { "type": "array", "items": { "type": "string" } } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/unShare": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Un-share report between applications and tenants",
+        "operationId": "Reports_UnShareById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "applicationIds": { "type": "array", "items": { "type": "string" } },
+                "tenantIds": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/changePassword": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Change Password",
+        "operationId": "Users_ChangePassword",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "password": { "type": "string" }, "invite": { "type": "boolean" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "$ref": "#/definitions/ChangePasswordResponse" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/forgotPassword": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "User Forgot the password",
+        "operationId": "Users_ForgotPassword",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "email": { "type": "string" }, "url": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/users/updatePassword": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Update the password by the user itself",
+        "operationId": "Users_UpdatePassword",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "oldPassword": { "type": "string" }, "newPassword": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances/snooze": {
+      "post": {
+        "tags": ["AlarmInstances"],
+        "summary": "Snooze the selected alarm instances",
+        "operationId": "AlarmInstances_Snooze",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": true,
+            "schema": {
+              "required": ["snoozeTimeInMinutes"],
+              "type": "object",
+              "properties": {
+                "snoozeTimeInMinutes": { "format": "int32", "type": "integer" },
+                "ids": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances/dismiss": {
+      "post": {
+        "tags": ["AlarmInstances"],
+        "summary": "Dismisses (closes) the selected alarm instances",
+        "operationId": "AlarmInstances_Dismiss",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": { "type": "object", "properties": { "ids": { "type": "array", "items": { "type": "string" } } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/subscribe": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "subscribe user to report",
+        "operationId": "Reports_SubscribeById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "subscriber": { "$ref": "#/definitions/Subscriber" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances/deleteAll": {
+      "post": {
+        "tags": ["AlarmInstances"],
+        "summary": "Deletes all alarm instance for current application",
+        "operationId": "AlarmInstances_deleteAll",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": {} }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/unsubscribe": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "unsubscribe",
+        "operationId": "Reports_UnSubscribeById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "subscriber": { "$ref": "#/definitions/Subscriber" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}/sendCommand": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Send a command to the device",
+        "operationId": "Devices_SendCommandById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string" },
+                "commandId": { "type": "string" },
+                "commandArgument": { "$ref": "#/definitions/CommandArgument" },
+                "deviceIds": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/alarmInstances/dismissAll": {
+      "post": {
+        "tags": ["AlarmInstances"],
+        "summary": "Dismisses all alarm instances for current application",
+        "operationId": "AlarmInstances_dismissAll",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": {} }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/eventLogEntries/deleteAll": {
+      "post": {
+        "tags": ["EventLogEntries"],
+        "summary": "Delete all event log entries",
+        "operationId": "EventLogEntries_deleteAll",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": {} }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}/removesetting": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Remove setting from device",
+        "operationId": "Devices_RemoveSettingById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "settingName": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/createVirtualDevice": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Create a new virtual device",
+        "operationId": "Devices_createVirtualDevice",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The virtual Device",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "virtualDevice": { "$ref": "#/definitions/VirtualDeviceDTO" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}/updatesettings": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Update settings for device",
+        "operationId": "Devices_UpdateSettingsById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "settings": { "type": "array", "items": { "$ref": "#/definitions/Setting" } } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}/getFullReading": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Returns all the readings for a specific device by time range and event types",
+        "operationId": "Devices_GetFullReadingById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": true,
+            "schema": {
+              "required": ["startDate", "endDate"],
+              "type": "object",
+              "properties": {
+                "startDate": { "format": "date-time", "type": "string" },
+                "endDate": { "format": "date-time", "type": "string" },
+                "events": { "type": "array", "items": { "$ref": "#/definitions/EventDesc" } },
+                "timezone": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/sendReportEmail": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Sends a report email",
+        "operationId": "Reports_SendReportEmailById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "subscriberUserId": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/getNextReadingScroll": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Returns all the readings for a specific device by the last scrollId and scrollId for the next page",
+        "operationId": "Devices_GetNextReadingScroll",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": { "type": "object", "properties": { "scrollId": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/editSubscription": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Edit subscription",
+        "operationId": "Reports_EditSubscriptionById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "subscriber": { "$ref": "#/definitions/Subscriber" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}/generateSASToken": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Generate SAS token for device",
+        "operationId": "Devices_GenerateSASTokenById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": true,
+            "schema": {
+              "required": ["daysTTL"],
+              "type": "object",
+              "properties": { "daysTTL": { "format": "int32", "type": "integer" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/{id}/stopVirtualDevice": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Stop virtual device",
+        "operationId": "Devices_StopVirtualDeviceById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "StopVirtualDeviceActionParameters",
+            "in": "body",
+            "description": "StopVirtualDevice action parameters",
+            "required": false,
+            "schema": { "type": "object" }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applications/{id}/getAppSecret": {
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Returns the app secret",
+        "operationId": "Applications_getAppSecretById",
+        "consumes": [],
+        "produces": ["application/json"],
+        "parameters": [{ "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" }],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/{id}/generateReportFile": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Generate report file",
+        "operationId": "Reports_GenerateReportFileById",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          { "name": "id", "in": "path", "description": "key: id", "required": true, "type": "string" },
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": { "type": "object", "properties": { "key": { "type": "string" }, "type": { "type": "string" } } }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/getFullReadingWithScroll": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Returns all the readings for a specific device by time range and event types and scrollId for the next page",
+        "operationId": "Devices_GetFullReadingWithScroll",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": true,
+            "schema": {
+              "required": ["startDate", "endDate"],
+              "type": "object",
+              "properties": {
+                "startDate": { "format": "date-time", "type": "string" },
+                "endDate": { "format": "date-time", "type": "string" },
+                "events": { "type": "array", "items": { "$ref": "#/definitions/EventDesc" } },
+                "timezone": { "type": "string" },
+                "deviceIds": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/reports/generateUnSavedReportFile": {
+      "post": {
+        "tags": ["Reports"],
+        "summary": "Generates an ad hoc report file",
+        "operationId": "Reports_GenerateUnSavedReportFile",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "report": { "$ref": "#/definitions/Report" }, "type": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/sendCommandToMultipleDevices": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Send a command to multiple devices",
+        "operationId": "Devices_SendCommandToMultipleDevices",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string" },
+                "commandId": { "type": "string" },
+                "commandArgument": { "$ref": "#/definitions/CommandArgument" },
+                "deviceIds": { "type": "array", "items": { "type": "string" } },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/applications/setDefaultPhoneCountryCode": {
+      "post": {
+        "tags": ["Applications"],
+        "summary": "Sets the default phone country code",
+        "operationId": "Applications_setDefaultPhoneCountryCode",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": { "masterAppId": { "type": "string" }, "phoneCountryCode": { "type": "string" } }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/getFullReadingForMultipleDevices": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Returns all the readings for multiple devices by time range and event types",
+        "operationId": "Devices_GetFullReadingForMultipleDevices",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": true,
+            "schema": {
+              "required": ["startDate", "endDate"],
+              "type": "object",
+              "properties": {
+                "startDate": { "format": "date-time", "type": "string" },
+                "endDate": { "format": "date-time", "type": "string" },
+                "events": { "type": "array", "items": { "$ref": "#/definitions/EventDesc" } },
+                "timezone": { "type": "string" },
+                "keys": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/devices/sendCommandWithMultipleArguments": {
+      "post": {
+        "tags": ["Devices"],
+        "summary": "Send a command to multiple devices",
+        "operationId": "Devices_SendCommandWithMultipleArguments",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "The parameters.",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": { "type": "string" },
+                "commandId": { "type": "string" },
+                "commandArgument": { "type": "array", "items": { "$ref": "#/definitions/CommandArgument" } },
+                "deviceIds": { "type": "array", "items": { "type": "string" } },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    },
+    "/odata/notifications/updateEmailTemplateForTenant": {
+      "post": {
+        "tags": ["Notifications"],
+        "summary": "Update email template for tenant by template id",
+        "operationId": "Notifications_UpdateEmailTemplateForTenant",
+        "consumes": ["application/json"],
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "parameters",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tenantId": { "type": "string" },
+                "mailTemplateId": { "type": "string" },
+                "appId": { "type": "string" },
+                "fromEmailAddress": { "type": "string" },
+                "fromEmailDisplay": { "type": "string" }
+              }
+            }
+          }
+        ],
+        "responses": { "200": { "description": "OK", "schema": { "type": "object" } } },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "GetDurationWindowRequest": {
+      "type": "object",
+      "properties": {
+        "deviceId": { "type": "string" },
+        "eventName": { "type": "string" },
+        "typeCode": { "format": "int32", "type": "integer" },
+        "state": { "type": "string" }
+      }
+    },
+    "AdditionalProperty": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "key": { "type": "string" },
+        "value": { "type": "string" },
+        "iconName": { "type": "string" },
+        "iconColor": { "type": "string" },
+        "severity": { "enum": ["Warning", "Minor", "Major", "Critical"], "type": "string" }
+      }
+    },
+    "GPSHistoryRequest": {
+      "type": "object",
+      "properties": {
+        "deviceId": { "type": "string" },
+        "startDate": { "format": "date-time", "type": "string" },
+        "endDate": { "format": "date-time", "type": "string" },
+        "distance": { "format": "double", "type": "number" }
+      }
+    },
+    "GPSReadingDTO": {
+      "type": "object",
+      "properties": {
+        "deviceId": { "type": "string" },
+        "lat": { "format": "double", "type": "number" },
+        "lng": { "format": "double", "type": "number" },
+        "alt": { "format": "double", "type": "number" },
+        "readingTimestamp": { "format": "date-time", "type": "string" },
+        "productId": { "type": "string" },
+        "unit": { "type": "string" },
+        "typeCode": { "type": "string" }
+      }
+    },
+    "LastReading": {
+      "type": "object",
+      "properties": {
+        "type": { "format": "int32", "type": "integer" },
+        "datetime": { "format": "date-time", "type": "string" },
+        "name": { "type": "string" },
+        "value": { "type": "string" },
+        "cultureInvariantValue": { "type": "string" },
+        "unit": { "type": "string" },
+        "deviceId": { "type": "string" }
+      }
+    },
+    "OverallWidgetRequest": {
+      "type": "object",
+      "properties": {
+        "groupIds": { "type": "array", "items": { "type": "string" } },
+        "products": { "type": "array", "items": { "$ref": "#/definitions/ProductAndDataStream" } }
+      }
+    },
+    "ProductAndDataStream": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "readings": { "type": "array", "items": { "$ref": "#/definitions/DataStream" } }
+      }
+    },
+    "DataStream": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "type": { "format": "int32", "type": "integer" } }
+    },
+    "UserLogin": {
+      "type": "object",
+      "properties": { "Email": { "type": "string" }, "Password": { "type": "string" }, "Url": { "type": "string" } }
+    },
+    "VerifyMultifactorBindingRequest": {
+      "type": "object",
+      "properties": {
+        "token": { "type": "string" },
+        "authenticatorCode": { "type": "string" },
+        "bindingCode": { "type": "string" }
+      }
+    },
+    "ResendMultifactorBindingRequest": {
+      "type": "object",
+      "properties": {
+        "token": { "type": "string" },
+        "authenticator": { "enum": ["Default", "SMS", "Email"], "type": "string" },
+        "email": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "ValidateMFALoginTicketRequest": {
+      "type": "object",
+      "properties": { "ticketId": { "type": "string" }, "userId": { "type": "string" } }
+    },
+    "LoginResponse": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "token": { "type": "string" }, "redirectUrl": { "type": "string" } }
+    },
+    "AuthDetails": {
+      "type": "object",
+      "properties": { "clientId": { "type": "string" }, "connection": { "type": "string" } }
+    },
+    "RegisterRequest": {
+      "type": "object",
+      "properties": {
+        "tenant": { "$ref": "#/definitions/Tenant" },
+        "user": { "$ref": "#/definitions/UserEntity" },
+        "password": { "type": "string" }
+      }
+    },
+    "Tenant": {
+      "type": "object",
+      "properties": {
+        "region": { "type": "string" },
+        "active": { "type": "boolean" },
+        "appId": { "type": "string" },
+        "subdomain": { "type": "string" },
+        "applications": { "type": "array", "items": { "$ref": "#/definitions/Application" } },
+        "logo": { "type": "string" },
+        "darkLogo": { "type": "string" },
+        "color": { "type": "string" },
+        "cultureInfo": { "type": "string" },
+        "passwordPolicy": { "$ref": "#/definitions/PasswordPolicy" },
+        "reportPrefix": { "type": "string" },
+        "reportColor": { "type": "string" },
+        "timezone": { "type": "string" },
+        "security": { "$ref": "#/definitions/TenantSecurity" },
+        "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/ServiceProperty" } },
+        "urls": { "type": "array", "items": { "type": "string" } },
+        "colorDark": { "type": "string" },
+        "templateId": { "type": "string" },
+        "settings": { "$ref": "#/definitions/TenantSettings" },
+        "ancestors": { "type": "array", "items": { "$ref": "#/definitions/AncestorNode" } },
+        "parentId": { "type": "string" },
+        "name": { "type": "string" },
+        "id": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "UserEntity": {
+      "type": "object",
+      "properties": {
+        "email": { "type": "string" },
+        "username": { "type": "string" },
+        "tenantId": { "type": "string" },
+        "role": { "type": "string" },
+        "roleId": { "type": "string" },
+        "mobilePhone": { "type": "string" },
+        "cultureInfo": { "type": "string" },
+        "favouriteReports": { "type": "array", "items": { "type": "string" } },
+        "status": { "enum": ["Pending", "Activated", "Blocked"], "type": "string" },
+        "failedLogins": { "format": "int32", "type": "integer" },
+        "isScrubbed": { "type": "boolean" },
+        "tokenId": { "type": "string" },
+        "profileId": { "type": "string" },
+        "externalId": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "Application": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "tenantId": { "type": "string" },
+        "allowedOrigins": { "type": "array", "items": { "type": "string" } },
+        "active": { "type": "boolean" },
+        "logo": { "type": "string" },
+        "darkLogo": { "type": "string" },
+        "cultureInfo": { "type": "string" },
+        "uniqueIdentifier": { "type": "string" },
+        "parentId": { "type": "string" },
+        "allowedApplications": { "type": "array", "items": { "type": "string" } },
+        "usersContainerDatabase": { "type": "string" },
+        "phoneCountryCode": { "type": "string" },
+        "passwordPolicy": { "$ref": "#/definitions/PasswordPolicy" },
+        "diagram": { "type": "string" },
+        "retention": { "format": "int32", "type": "integer" },
+        "deletionStatus": { "enum": ["None", "Pending", "Done", "Retried_Once", "Failed"], "type": "string" },
+        "timezone": { "type": "string" },
+        "settings": { "$ref": "#/definitions/ApplicationSettings" },
+        "templateId": { "type": "string" },
+        "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/ServiceProperty" } },
+        "enableMultiFactorAuthentication": { "type": "boolean" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "PasswordPolicy": {
+      "type": "object",
+      "properties": {
+        "maxPasswordLength": { "format": "int32", "type": "integer" },
+        "minPasswordLength": { "format": "int32", "type": "integer" },
+        "numberOfDifferentCharTypes": { "format": "int32", "type": "integer" },
+        "mustBeDifferentFromUserName": { "type": "boolean" }
+      }
+    },
+    "TenantSecurity": { "type": "object", "properties": { "captcha": { "$ref": "#/definitions/CaptchaSettings" } } },
+    "ServiceProperty": {
+      "type": "object",
+      "properties": {
+        "displayName": { "type": "string" },
+        "name": { "type": "string" },
+        "extra": { "type": "string" },
+        "datatype": { "enum": ["Text", "Integer", "Decimal", "Date", "Boolean", "Gps"], "type": "string" },
+        "allowedValueRange": { "$ref": "#/definitions/ValueRange" },
+        "defaultValue": { "type": "string" },
+        "unit": { "type": "string" },
+        "uiType": {
+          "enum": [
+            "Undefined",
+            "Button",
+            "RadioButton",
+            "TextOneLine",
+            "TextMultiLine",
+            "IpV4",
+            "Number",
+            "OID",
+            "Toggle",
+            "Slider",
+            "Select"
+          ],
+          "type": "string"
+        },
+        "required": { "type": "boolean" },
+        "icon": { "type": "string" },
+        "groupName": { "type": "string" },
+        "servicePropertyType": { "enum": ["Property", "Setting"], "type": "string" }
+      }
+    },
+    "TenantSettings": {
+      "type": "object",
+      "properties": {
+        "tenantLogo": { "type": "string" },
+        "tenantDarkLogo": { "type": "string" },
+        "color": { "type": "string" },
+        "cultureInfo": { "type": "string" },
+        "passwordPolicy": { "$ref": "#/definitions/PasswordPolicy" },
+        "reportPrefix": { "type": "string" },
+        "reportColor": { "type": "string" },
+        "timezone": { "type": "string" },
+        "security": { "$ref": "#/definitions/TenantSecurity" },
+        "colorDark": { "type": "string" },
+        "favicon": { "type": "string" },
+        "loginLogo": { "type": "string" },
+        "title": { "type": "string" },
+        "cssExternalFile": { "type": "string" },
+        "azureADConnect": { "type": "boolean" },
+        "inviteEmail": { "$ref": "#/definitions/EmailTemplate" },
+        "resetPasswordEmail": { "$ref": "#/definitions/EmailTemplate" },
+        "forgotPasswordEmail": { "$ref": "#/definitions/EmailTemplate" },
+        "reportEmail": { "$ref": "#/definitions/EmailTemplate" },
+        "splashLogo": { "type": "string" },
+        "defaultAppLogo": { "type": "string" },
+        "defaultColors": { "type": "array", "items": { "type": "string" } },
+        "helpCenter": { "type": "array", "items": { "$ref": "#/definitions/HelpCenter" } }
+      }
+    },
+    "AncestorNode": { "type": "object", "properties": { "id": { "type": "string" }, "name": { "type": "string" } } },
+    "ApplicationSettings": {
+      "type": "object",
+      "properties": {
+        "appLogo": { "type": "string" },
+        "appDarkLogo": { "type": "string" },
+        "cultureInfo": { "type": "string" },
+        "timezone": { "type": "string" },
+        "phoneCountryCode": { "type": "string" },
+        "passwordPolicy": { "$ref": "#/definitions/PasswordPolicy" },
+        "retention": { "format": "int32", "type": "integer" },
+        "format": { "type": "string" },
+        "mapLayout": { "type": "string" },
+        "mapOverlay": { "$ref": "#/definitions/MapOverlay" },
+        "viewMode": { "type": "string" },
+        "defaultLocation": { "$ref": "#/definitions/MapLocation" },
+        "featureSetId": { "type": "string" }
+      }
+    },
+    "CaptchaSettings": {
+      "type": "object",
+      "properties": {
+        "enabled": { "type": "boolean" },
+        "authenticationAttemptsAllowed": { "format": "int32", "type": "integer" }
+      }
+    },
+    "ValueRange": {
+      "type": "object",
+      "properties": {
+        "minimum": { "type": "string" },
+        "maximum": { "type": "string" },
+        "precision": { "format": "int32", "type": "integer" },
+        "numericType": { "enum": ["Int", "Decimal"], "type": "string" },
+        "step": { "type": "string" },
+        "allowedValues": { "type": "array", "items": { "$ref": "#/definitions/AdditionalProperty" } },
+        "isAllowedValuesNull": { "type": "boolean" },
+        "ranges": { "type": "array", "items": { "$ref": "#/definitions/Range" } }
+      }
+    },
+    "EmailTemplate": {
+      "type": "object",
+      "properties": { "emailBody": { "type": "string" }, "emailSubject": { "type": "string" } }
+    },
+    "HelpCenter": {
+      "type": "object",
+      "properties": { "Label": { "type": "string" }, "Icon": { "type": "string" }, "Url": { "type": "string" } }
+    },
+    "MapOverlay": {
+      "type": "object",
+      "properties": {
+        "Image": { "type": "string" },
+        "Positions": { "type": "array", "items": { "$ref": "#/definitions/MapLocation" } }
+      }
+    },
+    "MapLocation": {
+      "type": "object",
+      "properties": { "Lat": { "format": "double", "type": "number" }, "Lng": { "format": "double", "type": "number" } }
+    },
+    "Range": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "minimum": { "format": "double", "type": "number" },
+        "maximum": { "format": "double", "type": "number" },
+        "name": { "type": "string" },
+        "iconName": { "type": "string" },
+        "iconColor": { "type": "string" },
+        "severity": { "enum": ["Warning", "Minor", "Major", "Critical"], "type": "string" }
+      }
+    },
+    "TokenRequest": { "type": "object", "properties": { "token": { "type": "string" } } },
+    "Chart": {
+      "type": "object",
+      "properties": {
+        "startDate": { "format": "date-time", "type": "string" },
+        "endDate": { "format": "date-time", "type": "string" },
+        "interval": {
+          "enum": [
+            "Minutes",
+            "Hours",
+            "Days",
+            "Weeks",
+            "Months",
+            "Quarters",
+            "Semesters",
+            "Years",
+            "WeekDays",
+            "DayInYear"
+          ],
+          "type": "string"
+        },
+        "series": { "type": "array", "items": { "$ref": "#/definitions/ChartSeries" } },
+        "period": {
+          "enum": ["OneDay", "FiveDays", "OneMonth", "ThreeMonths", "SixMonths", "OneYear", "All"],
+          "type": "string"
+        },
+        "timezone": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ChartSeries": {
+      "type": "object",
+      "properties": {
+        "id": { "format": "int32", "type": "integer" },
+        "name": { "type": "string" },
+        "aggregation": {
+          "enum": ["Sum", "Average", "Count", "Min", "Max", "List", "Accelerometer", "Gps", "Raw"],
+          "type": "string"
+        },
+        "inputId": { "type": "string" },
+        "inputType": {
+          "enum": [
+            "DeviceId",
+            "ProductId",
+            "AppId",
+            "WebService",
+            "CustomInput",
+            "ComplexSeries",
+            "DurationDeviceId",
+            "GroupId"
+          ],
+          "type": "string"
+        },
+        "eventType": { "format": "int32", "type": "integer" },
+        "eventName": { "type": "string" },
+        "groupBy": { "type": "string" },
+        "startDate": { "format": "date-time", "type": "string" },
+        "endDate": { "format": "date-time", "type": "string" },
+        "interval": {
+          "enum": [
+            "Minutes",
+            "Hours",
+            "Days",
+            "Weeks",
+            "Months",
+            "Quarters",
+            "Semesters",
+            "Years",
+            "WeekDays",
+            "DayInYear"
+          ],
+          "type": "string"
+        },
+        "period": {
+          "enum": ["OneDay", "FiveDays", "OneMonth", "ThreeMonths", "SixMonths", "OneYear", "All"],
+          "type": "string"
+        },
+        "timezone": { "type": "string" },
+        "machineLearningMethod": {
+          "enum": ["AnomalyDetection", "LinearForecast", "QuadraticForecast"],
+          "type": "string"
+        },
+        "methodAggregations": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "CommandRequest": {
+      "type": "object",
+      "properties": {
+        "message": { "type": "string" },
+        "commandId": { "type": "string" },
+        "commandArgument": { "$ref": "#/definitions/CommandArgument" },
+        "deviceIds": { "type": "array", "items": { "type": "string" } },
+        "value": { "type": "string" }
+      }
+    },
+    "CommandArgument": {
+      "type": "object",
+      "properties": {
+        "direction": { "type": "string" },
+        "name": { "type": "string" },
+        "value": { "type": "string" },
+        "displayName": { "type": "string" },
+        "serviceProperty": { "$ref": "#/definitions/CommandServiceProperty" }
+      }
+    },
+    "CommandServiceProperty": {
+      "type": "object",
+      "properties": {
+        "currentStatus": { "type": "string" },
+        "currentStatusFromReading": { "type": "string" },
+        "displayName": { "type": "string" },
+        "name": { "type": "string" },
+        "extra": { "type": "string" },
+        "datatype": { "enum": ["Text", "Integer", "Decimal", "Date", "Boolean", "Gps"], "type": "string" },
+        "allowedValueRange": { "$ref": "#/definitions/ValueRange" },
+        "defaultValue": { "type": "string" },
+        "unit": { "type": "string" },
+        "uiType": {
+          "enum": [
+            "Undefined",
+            "Button",
+            "RadioButton",
+            "TextOneLine",
+            "TextMultiLine",
+            "IpV4",
+            "Number",
+            "OID",
+            "Toggle",
+            "Slider",
+            "Select"
+          ],
+          "type": "string"
+        },
+        "required": { "type": "boolean" },
+        "icon": { "type": "string" },
+        "groupName": { "type": "string" },
+        "servicePropertyType": { "enum": ["Property", "Setting"], "type": "string" }
+      }
+    },
+    "CommandResponse": {
+      "type": "object",
+      "properties": { "successful": { "type": "boolean" }, "information": { "type": "object" } }
+    },
+    "Dashboard": {
+      "type": "object",
+      "properties": {
+        "widgets": { "type": "array", "items": { "$ref": "#/definitions/Widget" } },
+        "name": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "Widget": {
+      "type": "object",
+      "properties": {
+        "layout": { "$ref": "#/definitions/WidgetLayout" },
+        "widget": { "type": "string" },
+        "id": { "type": "string" },
+        "settings": { "type": "object", "additionalProperties": { "type": "object" } },
+        "style": { "type": "object", "additionalProperties": { "type": "object" } },
+        "profileAccess": { "enum": ["FullAccess", "PartialAccess", "NoAccess"], "type": "string" }
+      }
+    },
+    "WidgetLayout": {
+      "type": "object",
+      "properties": {
+        "x": { "format": "int32", "type": "integer" },
+        "y": { "format": "int32", "type": "integer" },
+        "w": { "format": "int32", "type": "integer" },
+        "h": { "format": "int32", "type": "integer" }
+      }
+    },
+    "FeatureSet": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "features": { "type": "array", "items": { "$ref": "#/definitions/Feature" } },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "Feature": {
+      "type": "object",
+      "properties": {
+        "Id": { "type": "string" },
+        "Name": { "type": "string" },
+        "DisplayName": { "type": "string" },
+        "Type": { "enum": ["Ui", "Backend", "Shared"], "type": "string" },
+        "IsAllowed": { "type": "boolean" },
+        "Locked": { "type": "boolean" }
+      }
+    },
+    "TreeNode": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "text": { "type": "string" },
+        "type": { "enum": ["Group", "Hub", "Device", "User", "Application"], "type": "string" },
+        "itemsIds": { "type": "array", "items": { "type": "string" } },
+        "nodes": { "type": "array", "items": { "$ref": "#/definitions/TreeNode" } },
+        "count": { "format": "int32", "type": "integer" },
+        "icon": { "type": "string" }
+      }
+    },
+    "ReportParameters": {
+      "type": "object",
+      "properties": {
+        "ids": { "type": "array", "items": { "type": "string" } },
+        "startDate": { "format": "date-time", "type": "string" },
+        "endDate": { "format": "date-time", "type": "string" },
+        "reportId": { "type": "string" }
+      }
+    },
+    "NewDevicesPerMonthReportRequest": {
+      "description": "Device Readings Report Request struct",
+      "type": "object",
+      "properties": {
+        "StartDate": { "format": "date-time", "description": "Report start date", "type": "string" },
+        "EndDate": { "format": "date-time", "description": "Report end date", "type": "string" }
+      }
+    },
+    "DeviceReadingsReportRequest": {
+      "description": "Device Readings Report Request struct",
+      "type": "object",
+      "properties": {
+        "DeviceIds": { "description": "Device ids collection", "type": "array", "items": { "type": "string" } },
+        "Events": {
+          "description": "Events collection",
+          "type": "array",
+          "items": { "$ref": "#/definitions/EventDesc" }
+        },
+        "StartDate": { "format": "date-time", "description": "Report start date", "type": "string" },
+        "EndDate": { "format": "date-time", "description": "Report end date", "type": "string" },
+        "Timezone": { "description": "Report end date", "type": "string" }
+      }
+    },
+    "EventDesc": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "type": { "format": "int32", "type": "integer" } }
+    },
+    "TenantStatisticsRequest": {
+      "type": "object",
+      "properties": {
+        "FromDatetime": { "format": "date-time", "type": "string" },
+        "ToDatetime": { "format": "date-time", "type": "string" }
+      }
+    },
+    "RuleActionWebService": {
+      "type": "object",
+      "properties": {
+        "url": { "type": "string" },
+        "method": { "type": "string" },
+        "headers": { "type": "array", "items": { "$ref": "#/definitions/AdditionalProperty" } },
+        "body": { "type": "string" },
+        "contentType": { "type": "string" }
+      }
+    },
+    "AxonizeRestResponse": {
+      "type": "object",
+      "properties": {
+        "ContentType": { "type": "string" },
+        "ContentLength": { "format": "int64", "type": "integer" },
+        "ContentEncoding": { "type": "string" },
+        "Content": { "type": "string" },
+        "StatusCode": {
+          "enum": [
+            "Continue",
+            "SwitchingProtocols",
+            "OK",
+            "Created",
+            "Accepted",
+            "NonAuthoritativeInformation",
+            "NoContent",
+            "ResetContent",
+            "PartialContent",
+            "MultipleChoices",
+            "Ambiguous",
+            "MovedPermanently",
+            "Moved",
+            "Found",
+            "Redirect",
+            "SeeOther",
+            "RedirectMethod",
+            "NotModified",
+            "UseProxy",
+            "Unused",
+            "TemporaryRedirect",
+            "RedirectKeepVerb",
+            "BadRequest",
+            "Unauthorized",
+            "PaymentRequired",
+            "Forbidden",
+            "NotFound",
+            "MethodNotAllowed",
+            "NotAcceptable",
+            "ProxyAuthenticationRequired",
+            "RequestTimeout",
+            "Conflict",
+            "Gone",
+            "LengthRequired",
+            "PreconditionFailed",
+            "RequestEntityTooLarge",
+            "RequestUriTooLong",
+            "UnsupportedMediaType",
+            "RequestedRangeNotSatisfiable",
+            "ExpectationFailed",
+            "UpgradeRequired",
+            "InternalServerError",
+            "NotImplemented",
+            "BadGateway",
+            "ServiceUnavailable",
+            "GatewayTimeout",
+            "HttpVersionNotSupported"
+          ],
+          "type": "string"
+        },
+        "StatusDescription": { "type": "string" },
+        "RawBytes": { "format": "byte", "type": "string" },
+        "ResponseUri": { "type": "string" },
+        "Server": { "type": "string" },
+        "Headers": { "type": "array", "items": { "$ref": "#/definitions/Parameter" } },
+        "ResponseStatus": { "enum": ["None", "Completed", "Error", "TimedOut", "Aborted"], "type": "string" },
+        "ErrorMessage": { "type": "string" },
+        "ErrorException": { "type": "object" }
+      }
+    },
+    "Parameter": {
+      "type": "object",
+      "properties": { "Name": { "type": "string" }, "Value": { "type": "object" }, "ContentType": { "type": "string" } }
+    },
+    "TenantStatisticsResponse": {
+      "type": "object",
+      "properties": {
+        "totalApplications": { "format": "int64", "type": "integer" },
+        "newApplications": { "format": "int64", "type": "integer" },
+        "totalDevices": { "format": "int64", "type": "integer" },
+        "newDevices": { "format": "int64", "type": "integer" },
+        "totalEvents": { "format": "int64", "type": "integer" },
+        "newEvents": { "format": "int64", "type": "integer" },
+        "newData": { "format": "int64", "type": "integer" },
+        "totalData": { "format": "int64", "type": "integer" },
+        "totalUsers": { "format": "int64", "type": "integer" },
+        "newUsers": { "format": "int64", "type": "integer" },
+        "totalSms": { "format": "int64", "type": "integer" },
+        "newSms": { "format": "int64", "type": "integer" },
+        "totalEmails": { "format": "int64", "type": "integer" },
+        "newEmails": { "format": "int64", "type": "integer" }
+      }
+    },
+    "ODataResponse[List[AlarmInstance]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/AlarmInstance" } }
+      }
+    },
+    "AlarmInstance": {
+      "type": "object",
+      "properties": {
+        "deviceId": { "type": "string" },
+        "typeCode": { "format": "int32", "type": "integer" },
+        "value": { "type": "string" },
+        "readingDateTime": { "format": "date-time", "type": "string" },
+        "readingDateTimeOffset": { "format": "date-time", "type": "string" },
+        "ruleId": { "type": "string" },
+        "eventName": { "type": "string" },
+        "severity": { "enum": ["Warning", "Minor", "Major", "Critical"], "type": "string" },
+        "status": { "enum": ["Open", "Closed"], "type": "string" },
+        "snoozeExpirationDate": { "format": "date-time", "type": "string" },
+        "message": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[Application]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Application" } }
+      }
+    },
+    "ODataResponse[List[ApplicationTemplate]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/ApplicationTemplate" } }
+      }
+    },
+    "ApplicationTemplate": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "settings": { "$ref": "#/definitions/ApplicationSettings" },
+        "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/ServiceProperty" } },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[Audit]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Audit" } }
+      }
+    },
+    "Audit": {
+      "type": "object",
+      "properties": {
+        "entityName": { "type": "string" },
+        "entityId": { "type": "string" },
+        "action": { "type": "string" },
+        "category": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "userId": { "type": "string" },
+        "requestDateTime": { "format": "date-time", "type": "string" },
+        "responseDateTime": { "format": "date-time", "type": "string" },
+        "application": { "type": "string" },
+        "tenant": { "type": "string" },
+        "correlationId": { "format": "uuid", "type": "string", "example": "00000000-0000-0000-0000-000000000000" },
+        "ip": { "type": "string" },
+        "result": { "type": "string" },
+        "requestDurationMs": { "format": "double", "type": "number" },
+        "additionalInfo": { "type": "array", "items": { "$ref": "#/definitions/AdditionalInfo" } },
+        "requestUrl": { "type": "string" },
+        "actionDisplay": { "type": "string" },
+        "categoryDisplay": { "type": "string" },
+        "userName": { "type": "string" },
+        "roles": { "type": "array", "items": { "type": "string" } },
+        "roleId": { "type": "string" },
+        "sourceName": { "type": "string" },
+        "isSucceeded": { "type": "boolean" },
+        "sourceType": { "enum": ["Unknown", "Portal", "RulesEngine", "XStream", "Gateways"], "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "AdditionalInfo": {
+      "type": "object",
+      "properties": { "Key": { "type": "string" }, "Value": { "type": "string" } }
+    },
+    "ODataResponse[List[String]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ODataResponse[List[Device]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Device" } }
+      }
+    },
+    "Device": {
+      "type": "object",
+      "properties": {
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "topic": { "type": "string" },
+        "groupId": { "type": "string" },
+        "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/AdditionalProperty" } },
+        "active": { "type": "boolean" },
+        "firstTimeRegistrationDate": { "format": "date-time", "type": "string" },
+        "activationDate": { "format": "date-time", "type": "string" },
+        "token": { "type": "string" },
+        "commandsProtocol": {
+          "enum": ["Undefined", "Http", "Amqp", "Modbus", "SNMP", "OPCUA", "HubJsonSender", "Test"],
+          "type": "string"
+        },
+        "lastReadingTime": { "format": "date-time", "type": "string" },
+        "isConnected": { "type": "boolean" },
+        "hubId": { "type": "string" },
+        "hubPrimaryKey": { "type": "string" },
+        "hubSecondaryKey": { "type": "string" },
+        "userDefinedLocation": { "$ref": "#/definitions/Location" },
+        "currentLocation": { "$ref": "#/definitions/Location" },
+        "customId": { "type": "string" },
+        "keepAliveThreshold": { "format": "int32", "type": "integer" },
+        "alarmInstances": { "type": "array", "items": { "$ref": "#/definitions/AlarmInstanceNode" } },
+        "isAlarmed": { "type": "boolean" },
+        "virtualDeviceStatus": { "enum": ["NotAvailable", "Started", "Stopped"], "type": "string" },
+        "virtualDeviceEvents": { "type": "string" },
+        "coords": { "$ref": "#/definitions/Coords" },
+        "redisKey": { "type": "string" },
+        "diagram": { "type": "string" },
+        "streamUrl": { "type": "string" },
+        "profileIds": { "type": "array", "items": { "type": "string" } },
+        "ancestors": { "type": "array", "items": { "$ref": "#/definitions/AncestorNode" } },
+        "parentId": { "type": "string" },
+        "name": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "address": { "type": "string" },
+        "lat": { "format": "double", "type": "number" },
+        "lng": { "format": "double", "type": "number" },
+        "updateDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "AlarmInstanceNode": {
+      "type": "object",
+      "properties": { "id": { "type": "string" }, "name": { "type": "string" } }
+    },
+    "Coords": {
+      "type": "object",
+      "properties": { "x": { "format": "int32", "type": "integer" }, "y": { "format": "int32", "type": "integer" } }
+    },
+    "Setting": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "desired": { "$ref": "#/definitions/TwinProperty" },
+        "reported": { "$ref": "#/definitions/TwinProperty" },
+        "lastSync": { "format": "date-time", "type": "string" },
+        "version": { "format": "int32", "type": "integer" }
+      }
+    },
+    "TwinProperty": {
+      "type": "object",
+      "properties": {
+        "value": { "type": "string" },
+        "properties": { "type": "object", "additionalProperties": { "type": "object" } }
+      }
+    },
+    "VirtualDeviceDTO": {
+      "type": "object",
+      "properties": {
+        "properties": { "$ref": "#/definitions/VirtualDeviceProperties" },
+        "events": { "type": "string" },
+        "productName": { "type": "string" },
+        "productId": { "type": "string" },
+        "serialNumber": { "type": "string" },
+        "location": { "$ref": "#/definitions/Location" },
+        "parentId": { "type": "string" }
+      }
+    },
+    "VirtualDeviceProperties": {
+      "type": "object",
+      "properties": {
+        "ConnectionString": { "type": "string" },
+        "VendorId": { "type": "string" },
+        "VendorName": { "type": "string" },
+        "ProductName": { "type": "string" },
+        "DeviceId": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[DurationMonitoringSettings]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/DurationMonitoringSettings" } }
+      }
+    },
+    "DurationMonitoringSettings": {
+      "type": "object",
+      "properties": {
+        "devices": { "type": "array", "items": { "$ref": "#/definitions/DeviceNode" } },
+        "appIdForDuration": { "type": "string" },
+        "productId": { "type": "string" },
+        "eventName": { "type": "string" },
+        "typeCode": { "format": "int32", "type": "integer" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "DeviceNode": { "type": "object", "properties": { "id": { "type": "string" }, "name": { "type": "string" } } },
+    "ODataResponse[List[DynamicPropertyDescriptor]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/DynamicPropertyDescriptor" } }
+      }
+    },
+    "DynamicPropertyDescriptor": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "entity": { "enum": ["Application", "Device"], "type": "string" },
+        "type": { "enum": ["String", "Number", "Datetime"], "type": "string" },
+        "labelKey": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[EventLogEntry]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/EventLogEntry" } }
+      }
+    },
+    "EventLogEntry": {
+      "type": "object",
+      "properties": {
+        "group": { "$ref": "#/definitions/GroupNode" },
+        "product": { "$ref": "#/definitions/ProductNode" },
+        "deviceName": { "type": "string" },
+        "eventLogMessage": { "type": "string" },
+        "eventDateTime": { "format": "date-time", "type": "string" },
+        "source": { "type": "string" },
+        "alarmInstanceId": { "type": "string" },
+        "ruleId": { "type": "string" },
+        "deviceId": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "GroupNode": { "type": "object", "properties": { "id": { "type": "string" }, "name": { "type": "string" } } },
+    "ProductNode": { "type": "object", "properties": { "id": { "type": "string" }, "name": { "type": "string" } } },
+    "ODataResponse[List[Gateway]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Gateway" } }
+      }
+    },
+    "Gateway": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "HttpGateway",
+            "Datastructure",
+            "Deployment",
+            "PortAllocation",
+            "Ingress",
+            "PollingGatway",
+            "QueueGateway",
+            "HttpGatewayProducer"
+          ],
+          "type": "string"
+        },
+        "namespace": { "type": "string" },
+        "name": { "type": "string" },
+        "datastructureEndpoint": { "type": "string" },
+        "authKey": { "type": "string" },
+        "iothubUrl": { "type": "string" },
+        "gatewayDeviceId": { "type": "string" },
+        "productId": { "type": "string" },
+        "image": { "$ref": "#/definitions/DockerImage" },
+        "port": { "format": "int32", "type": "integer" },
+        "ip": { "type": "string" },
+        "status": { "enum": ["Installed", "Deleted"], "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "DockerImage": {
+      "type": "object",
+      "properties": {
+        "tag": { "type": "string" },
+        "repository": { "type": "string" },
+        "imagepullsecret": { "type": "string" }
+      }
+    },
+    "Report": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "subscribers": { "type": "array", "items": { "$ref": "#/definitions/Subscriber" } },
+        "shared": { "$ref": "#/definitions/ShareEntities" },
+        "createdByDisplayName": { "type": "string" },
+        "isDefault": { "type": "boolean" },
+        "columns": { "type": "array", "items": { "type": "string" } },
+        "type": { "enum": ["OData", "Custom"], "type": "string" },
+        "entity": { "type": "string" },
+        "query": { "type": "string" },
+        "filters": { "type": "string" },
+        "customProperties": { "$ref": "#/definitions/CustomProperties" },
+        "description": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "Subscriber": {
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "cron": { "type": "string" },
+        "appId": { "type": "string" },
+        "tenantId": { "type": "string" },
+        "timezone": { "type": "string" },
+        "lastRunDate": { "format": "date-time", "type": "string" },
+        "fileType": { "type": "string" },
+        "lastResultCount": { "format": "int32", "type": "integer" },
+        "nextRunDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "ShareEntities": {
+      "type": "object",
+      "properties": {
+        "applications": { "type": "array", "items": { "type": "string" } },
+        "tenants": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "CustomProperties": {
+      "type": "object",
+      "properties": {
+        "endpoint": { "type": "string" },
+        "name": { "type": "string" },
+        "devices": { "type": "array", "items": { "type": "string" } },
+        "products": { "type": "array", "items": { "type": "string" } },
+        "readings": { "type": "array", "items": { "$ref": "#/definitions/EventDesc" } },
+        "dateRange": { "$ref": "#/definitions/DateRange" },
+        "properties": { "type": "object", "additionalProperties": { "type": "object" } }
+      }
+    },
+    "DateRange": {
+      "type": "object",
+      "properties": {
+        "startDate": { "format": "date-time", "type": "string" },
+        "endDate": { "format": "date-time", "type": "string" },
+        "keyword": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[Group]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Group" } }
+      }
+    },
+    "Group": {
+      "type": "object",
+      "properties": {
+        "info": { "type": "string" },
+        "users": { "type": "array", "items": { "$ref": "#/definitions/UserNode" } },
+        "devices": { "type": "array", "items": { "$ref": "#/definitions/DeviceNode" } },
+        "active": { "type": "boolean" },
+        "diagram": { "type": "string" },
+        "defaultLocation": { "$ref": "#/definitions/Location" },
+        "profileIds": { "type": "array", "items": { "type": "string" } },
+        "ancestors": { "type": "array", "items": { "$ref": "#/definitions/AncestorNode" } },
+        "parentId": { "type": "string" },
+        "name": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "UserNode": { "type": "object", "properties": { "id": { "type": "string" }, "name": { "type": "string" } } },
+    "ODataResponse[List[LoggedDevice]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/LoggedDevice" } }
+      }
+    },
+    "LoggedDevice": {
+      "type": "object",
+      "properties": {
+        "deviceId": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[Notification]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Notification" } }
+      }
+    },
+    "Notification": {
+      "required": ["address", "message"],
+      "type": "object",
+      "properties": {
+        "address": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "format": "int32", "type": "integer" },
+        "messageTime": { "format": "date-time", "type": "string" },
+        "tenantId": { "maxLength": 50, "minLength": 0, "type": "string" },
+        "userId": { "maxLength": 50, "minLength": 0, "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "creationDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "ODataResponse[List[Product]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Product" } }
+      }
+    },
+    "Product": {
+      "type": "object",
+      "properties": {
+        "urn": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "commands": { "type": "array", "items": { "$ref": "#/definitions/ServiceCommand" } },
+        "firmwareFiles": { "type": "array", "items": { "$ref": "#/definitions/FirmwareFile" } },
+        "events": { "type": "array", "items": { "$ref": "#/definitions/ServiceEvent" } },
+        "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/ServiceProperty" } },
+        "customIdFormat": { "type": "string" },
+        "customIdDisplay": { "type": "boolean" },
+        "customIdRequired": { "type": "boolean" },
+        "serialNumberFormat": { "type": "string" },
+        "serialNumberDisplay": { "type": "boolean" },
+        "serialNumberRequired": { "type": "boolean" },
+        "active": { "type": "boolean" },
+        "keepAliveThreshold": { "format": "int32", "type": "integer" },
+        "defaultVirtualDeviceEvents": { "type": "string" },
+        "disconnectChildDevicesOnDisconnect": { "type": "boolean" },
+        "connectChildDevicesOnConnect": { "type": "boolean" },
+        "disconnectGroupDeviceOnAllChildrenDisconnect": { "type": "boolean" },
+        "connectGroupDeviceOnAnyChildrenConnect": { "type": "boolean" },
+        "onConnectCommandIds": { "type": "array", "items": { "type": "string" } },
+        "manufacturer": { "type": "string" },
+        "commandsProtocol": {
+          "enum": ["Undefined", "Http", "Amqp", "Modbus", "SNMP", "OPCUA", "HubJsonSender", "Test"],
+          "type": "string"
+        },
+        "mediaSettings": { "$ref": "#/definitions/MediaSettings" },
+        "commandsAddress": { "type": "string" },
+        "commandsUrl": { "type": "string" },
+        "autoDiscoveryCommand": { "type": "string" },
+        "displayCommandsTab": { "type": "boolean" },
+        "onDeleteCommands": { "type": "array", "items": { "type": "string" } },
+        "onPatchCommands": { "type": "array", "items": { "type": "string" } },
+        "displayDeviceSDKDetails": { "type": "boolean" },
+        "tooltip": { "type": "array", "items": { "$ref": "#/definitions/TooltipElement" } },
+        "enableSDKFeatures": { "type": "boolean" },
+        "schemaDefinitionsId": { "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ServiceCommand": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "arguments": { "type": "array", "items": { "$ref": "#/definitions/CommandArgument" } },
+        "payload": { "type": "string" },
+        "commandResponseType": { "enum": ["Undefined", "String", "Json"], "type": "string" },
+        "commandKind": { "enum": ["Undefined", "IotHubMethod"], "type": "string" }
+      }
+    },
+    "FirmwareFile": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" },
+        "url": { "type": "string" },
+        "hash": { "type": "string" },
+        "name": { "type": "string" },
+        "creationDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "ServiceEvent": {
+      "type": "object",
+      "properties": {
+        "typeCode": { "format": "int32", "type": "integer" },
+        "description": { "type": "string" },
+        "name": { "type": "string" },
+        "nameResourceKey": { "type": "string" },
+        "datatype": { "type": "string" },
+        "logicalType": { "type": "string" },
+        "displayType": { "type": "string" },
+        "valueRange": { "$ref": "#/definitions/ValueRange" },
+        "unit": { "type": "string" },
+        "retention": { "format": "int32", "type": "integer" },
+        "iconName": { "type": "string" },
+        "iconColor": { "type": "string" },
+        "isAccumulated": { "type": "boolean" },
+        "subject": { "type": "string" },
+        "fieldsCount": { "format": "int32", "type": "integer" },
+        "precision": { "format": "int32", "type": "integer" },
+        "calculationId": { "type": "string" },
+        "defaultRollupMethod": { "enum": ["Sum", "Avg", "Min", "Max", "Count"], "type": "string" },
+        "loggingSettings": { "$ref": "#/definitions/EventLoggingSettings" },
+        "aggregatedEventSettings": { "$ref": "#/definitions/AggregatedEventSettings" }
+      }
+    },
+    "MediaSettings": {
+      "type": "object",
+      "properties": {
+        "mediaProtocol": { "enum": ["None", "RTMP"], "type": "string" },
+        "mediaType": { "enum": ["Unknown", "Video", "Audio", "Image"], "type": "string" },
+        "aspectRatio": { "type": "string" }
+      }
+    },
+    "TooltipElement": {
+      "type": "object",
+      "properties": { "type": { "type": "string" }, "value": { "type": "string" } }
+    },
+    "EventLoggingSettings": {
+      "type": "object",
+      "properties": { "shouldLog": { "type": "boolean" }, "logFormat": { "type": "string" } }
+    },
+    "AggregatedEventSettings": {
+      "type": "object",
+      "properties": {
+        "interval": { "enum": ["OneSecond", "OneMinute", "FiveMinutes", "TenMinutes"], "type": "string" },
+        "eventName": { "type": "string" },
+        "eventTypeCode": { "format": "int32", "type": "integer" },
+        "aggregationMethod": { "enum": ["Sum", "Avg", "Min", "Max", "Count", "Custom"], "type": "string" },
+        "customAggregationName": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[Profile]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Profile" } }
+      }
+    },
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "allowedGroups": { "type": "array", "items": { "type": "string" } },
+        "notAllowedGroups": { "type": "array", "items": { "type": "string" } },
+        "deviceBlackList": { "type": "array", "items": { "type": "string" } },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[Report]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Report" } }
+      }
+    },
+    "ODataResponse[List[Role]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Role" } }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "name": { "maxLength": 200, "minLength": 0, "type": "string" },
+        "displayName": { "maxLength": 200, "minLength": 0, "type": "string" },
+        "isShared": { "format": "int32", "type": "integer" },
+        "linkedTasks": { "type": "array", "items": { "$ref": "#/definitions/Task" } },
+        "taskIds": { "type": "array", "items": { "type": "string" }, "readOnly": true },
+        "description": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "modifiedBy": { "type": "string" },
+        "modifiedDate": { "format": "date-time", "type": "string" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "creationDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "Task": {
+      "required": ["name"],
+      "type": "object",
+      "properties": {
+        "name": { "maxLength": 200, "minLength": 0, "type": "string" },
+        "displayName": { "maxLength": 200, "minLength": 0, "type": "string" },
+        "entity": { "type": "string" },
+        "taskToEndpoints": { "type": "array", "items": { "$ref": "#/definitions/TaskToEndpoint" } },
+        "roles": { "type": "array", "items": { "$ref": "#/definitions/Role" } },
+        "childTasks": { "type": "array", "items": { "$ref": "#/definitions/Task" } },
+        "parentTasks": { "type": "array", "items": { "$ref": "#/definitions/Task" } },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "creationDate": { "format": "date-time", "type": "string" }
+      }
+    },
+    "TaskToEndpoint": {
+      "type": "object",
+      "properties": {
+        "taskId": { "type": "string" },
+        "endpointId": { "type": "string" },
+        "uiPermissionType": { "format": "int32", "type": "integer" },
+        "endpoint": { "$ref": "#/definitions/Endpoint" },
+        "task": { "$ref": "#/definitions/Task" }
+      }
+    },
+    "Endpoint": {
+      "required": ["Name"],
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "maxLength": 100, "minLength": 0, "type": "string" },
+        "type": { "format": "int32", "type": "integer" },
+        "uiPermissionType": { "enum": ["enabled", "disabled", "hide"], "type": "string" },
+        "taskToEndpoints": { "type": "array", "items": { "$ref": "#/definitions/TaskToEndpoint" } }
+      }
+    },
+    "ODataResponse[List[Endpoint]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Endpoint" } }
+      }
+    },
+    "ODataResponse[List[Task]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Task" } }
+      }
+    },
+    "ODataResponse[List[Rule]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Rule" } }
+      }
+    },
+    "Rule": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "active": { "type": "boolean" },
+        "severity": { "enum": ["Warning", "Minor", "Major", "Critical"], "type": "string" },
+        "actions": { "type": "array", "items": { "$ref": "#/definitions/RuleAction" } },
+        "restoreActions": { "type": "array", "items": { "$ref": "#/definitions/RuleAction" } },
+        "schedule": { "$ref": "#/definitions/Schedule" },
+        "weeklySchedule": { "$ref": "#/definitions/WeeklySchedule" },
+        "cronSchedule": { "type": "string" },
+        "cronSchedules": { "type": "array", "items": { "type": "string" } },
+        "type": { "enum": ["Conditional", "TimeBased"], "type": "string" },
+        "timezone": { "type": "string" },
+        "booleanExpression": { "type": "string" },
+        "conditions": { "type": "array", "items": { "$ref": "#/definitions/RuleCondition" } },
+        "category": { "type": "string" },
+        "level": { "enum": ["ByApp", "ByProduct", "ByDevice"], "type": "string" },
+        "automaticallyDismiss": { "type": "boolean" },
+        "notifyOnRestore": { "type": "boolean" },
+        "ruleRecurrenceSettings": { "$ref": "#/definitions/RuleRecurrenceSettings" },
+        "tenantId": { "type": "string" },
+        "partialAccess": { "type": "boolean" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "RuleAction": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": {
+          "enum": [
+            "SMS",
+            "Email",
+            "AlarmInstance",
+            "EventLogEntry",
+            "Command",
+            "WebService",
+            "PhoneCall",
+            "AdditionalProperty"
+          ],
+          "type": "string"
+        },
+        "emailProperties": { "$ref": "#/definitions/RuleActionEmail" },
+        "smsProperties": { "$ref": "#/definitions/RuleActionSms" },
+        "phoneCallProperties": { "$ref": "#/definitions/RuleActionPhoneCall" },
+        "alarmInstanceProperties": { "$ref": "#/definitions/RuleActionAlarmInstance" },
+        "eventLogEntryProperties": { "$ref": "#/definitions/RuleActionEventLogEntry" },
+        "commandProperties": { "$ref": "#/definitions/RuleActionCommand" },
+        "webServiceProperties": { "$ref": "#/definitions/RuleActionWebService" },
+        "ruleRecurrenceSettings": { "$ref": "#/definitions/RuleRecurrenceSettings" },
+        "additionalPropertyProperties": { "$ref": "#/definitions/RuleAdditionalProperty" }
+      }
+    },
+    "Schedule": {
+      "type": "object",
+      "properties": {
+        "sun": { "type": "boolean" },
+        "mon": { "type": "boolean" },
+        "tue": { "type": "boolean" },
+        "wed": { "type": "boolean" },
+        "thu": { "type": "boolean" },
+        "fri": { "type": "boolean" },
+        "sat": { "type": "boolean" },
+        "timeRange": { "$ref": "#/definitions/ScheduleTimePair" }
+      }
+    },
+    "WeeklySchedule": {
+      "type": "object",
+      "properties": {
+        "sun": { "$ref": "#/definitions/DailySchedule" },
+        "mon": { "$ref": "#/definitions/DailySchedule" },
+        "tue": { "$ref": "#/definitions/DailySchedule" },
+        "wed": { "$ref": "#/definitions/DailySchedule" },
+        "thu": { "$ref": "#/definitions/DailySchedule" },
+        "fri": { "$ref": "#/definitions/DailySchedule" },
+        "sat": { "$ref": "#/definitions/DailySchedule" }
+      }
+    },
+    "RuleCondition": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "appIdForRule": { "type": "string" },
+        "productId": { "type": "string" },
+        "devices": { "type": "array", "items": { "$ref": "#/definitions/DeviceNode" } },
+        "eventName": { "type": "string" },
+        "typeCode": { "format": "int32", "type": "integer" },
+        "threshold": { "type": "string" },
+        "operator": { "type": "string" },
+        "durationInMinutes": { "format": "int32", "type": "integer" },
+        "conditionCount": { "format": "int32", "type": "integer" },
+        "isRelative": { "type": "boolean" },
+        "locationConditionSettings": { "$ref": "#/definitions/LocationConditionSettings" },
+        "type": {
+          "enum": ["Threshold", "Location", "Property", "PropertyAndStatic", "Instantaneous"],
+          "type": "string"
+        },
+        "name": { "type": "string" },
+        "ruleTarget": { "type": "string" },
+        "targetId": { "type": "string" },
+        "eventProductId": { "type": "string" }
+      }
+    },
+    "RuleRecurrenceSettings": {
+      "type": "object",
+      "properties": {
+        "repeatFrequency": { "format": "int32", "type": "integer" },
+        "maxNumberOfOccurrences": { "format": "int32", "type": "integer" }
+      }
+    },
+    "RuleActionEmail": {
+      "type": "object",
+      "properties": {
+        "userDetails": { "type": "array", "items": { "$ref": "#/definitions/UserDetails" } },
+        "message": { "type": "string" },
+        "subject": { "type": "string" },
+        "userIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "RuleActionSms": {
+      "type": "object",
+      "properties": {
+        "userDetails": { "type": "array", "items": { "$ref": "#/definitions/UserDetails" } },
+        "message": { "type": "string" },
+        "userIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "RuleActionPhoneCall": {
+      "type": "object",
+      "properties": {
+        "userDetails": { "type": "array", "items": { "$ref": "#/definitions/UserDetails" } },
+        "message": { "type": "string" },
+        "userIds": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "RuleActionAlarmInstance": { "type": "object", "properties": { "message": { "type": "string" } } },
+    "RuleActionEventLogEntry": { "type": "object", "properties": { "message": { "type": "string" } } },
+    "RuleActionCommand": {
+      "type": "object",
+      "properties": {
+        "commandId": { "type": "string" },
+        "message": { "type": "string" },
+        "commandArguments": { "type": "array", "items": { "$ref": "#/definitions/RuleActionCommandArgument" } },
+        "deviceIds": { "type": "array", "items": { "type": "string" } },
+        "value": { "type": "string" },
+        "shouldExecuteOnTriggeringDevice": { "type": "boolean" }
+      }
+    },
+    "RuleAdditionalProperty": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "value": { "type": "string" }, "deviceId": { "type": "string" } }
+    },
+    "ScheduleTimePair": {
+      "type": "object",
+      "properties": { "startTime": { "type": "string" }, "endTime": { "type": "string" } }
+    },
+    "DailySchedule": {
+      "type": "object",
+      "properties": { "active": { "type": "boolean" }, "timeRange": { "$ref": "#/definitions/ScheduleTimePair" } }
+    },
+    "LocationConditionSettings": {
+      "type": "object",
+      "properties": {
+        "longitude": { "type": "string" },
+        "latitude": { "type": "string" },
+        "radius": { "format": "double", "type": "number" },
+        "shouldBeInside": { "type": "boolean" },
+        "propertyName": { "type": "string" }
+      }
+    },
+    "UserDetails": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "phoneNumber": { "type": "string" }, "email": { "type": "string" } }
+    },
+    "RuleActionCommandArgument": {
+      "type": "object",
+      "properties": { "name": { "type": "string" }, "value": { "type": "string" } }
+    },
+    "ODataResponse[List[SchemaDefinitions]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/SchemaDefinitions" } }
+      }
+    },
+    "SchemaDefinitions": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "schema": { "type": "array", "items": { "$ref": "#/definitions/SchemaObject" } },
+        "parserType": { "enum": ["JsonParser", "StringParser", "LorawanParser"], "type": "string" },
+        "options": { "$ref": "#/definitions/SchemaOptions" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "SchemaObject": {
+      "type": "object",
+      "properties": {
+        "attributePath": { "type": "string" },
+        "convertInfo": { "$ref": "#/definitions/ConvertInfo" },
+        "actionType": { "enum": ["Event", "Patch", "CustomId", "Datetime", "DeviceName"], "type": "string" },
+        "properties": { "type": "object", "additionalProperties": { "type": "object" } }
+      }
+    },
+    "SchemaOptions": {
+      "type": "object",
+      "properties": {
+        "bulk": { "$ref": "#/definitions/BulkOptions" },
+        "properties": { "type": "object", "additionalProperties": { "type": "object" } }
+      }
+    },
+    "ConvertInfo": {
+      "type": "object",
+      "properties": {
+        "functionType": {
+          "enum": ["customFunction", "multiply", "decToHex", "hexToDec", "epochToDateTime", "subString"],
+          "type": "string"
+        },
+        "parameters": { "type": "array", "items": { "type": "string" } },
+        "customFunction": { "type": "string" }
+      }
+    },
+    "BulkOptions": {
+      "type": "object",
+      "properties": { "propertyName": { "type": "string" }, "isEnabled": { "type": "boolean" } }
+    },
+    "ODataResponse[List[Tenant]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/Tenant" } }
+      }
+    },
+    "ODataResponse[List[TenantTemplate]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/TenantTemplate" } }
+      }
+    },
+    "TenantTemplate": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "settings": { "$ref": "#/definitions/TenantSettings" },
+        "id": { "type": "string" },
+        "appId": { "type": "string" },
+        "createDate": { "format": "date-time", "type": "string" },
+        "createUser": { "type": "string" },
+        "updateDate": { "format": "date-time", "type": "string" },
+        "updateUser": { "type": "string" }
+      }
+    },
+    "ODataResponse[List[UserEntity]]": {
+      "type": "object",
+      "properties": {
+        "@odata.context": { "type": "string" },
+        "value": { "type": "array", "items": { "$ref": "#/definitions/UserEntity" } }
+      }
+    },
+    "ChangePasswordResponse": {
+      "type": "object",
+      "properties": { "token": { "type": "string" }, "uniqueIdentifier": { "type": "string" } }
+    }
+  },
+  "parameters": {},
+  "responses": {},
+  "securityDefinitions": {
+    "apiKey": { "type": "apiKey", "description": "API Key Authentication", "name": "authorization", "in": "header" }
+  },
+  "security": [],
+  "tags": [
+    { "name": "Internal", "description": "a WebApi controller" },
+    { "name": "Analytics", "description": "a WebApi controller" },
+    { "name": "Auth", "description": "a WebApi controller" },
+    { "name": "Charts", "description": "a WebApi controller" },
+    { "name": "Commands", "description": "a WebApi controller" },
+    { "name": "Configuration", "description": "a WebApi controller" },
+    { "name": "Dashboards", "description": "a WebApi controller" },
+    { "name": "Default", "description": "a WebApi controller" },
+    { "name": "EventManifest", "description": "a WebApi controller" },
+    { "name": "FeatureSet", "description": "a WebApi controller" },
+    { "name": "Hierarchy", "description": "a WebApi controller" },
+    { "name": "Locales", "description": "a WebApi controller" },
+    { "name": "ReportsObject", "description": "a WebApi controller" },
+    { "name": "Statistics", "description": "a WebApi controller" },
+    { "name": "AlarmInstances", "description": "an OData controller" },
+    { "name": "Applications", "description": "an OData controller" },
+    { "name": "ApplicationTemplates", "description": "an OData controller" },
+    { "name": "Audits", "description": "an OData controller" },
+    { "name": "Devices", "description": "an OData controller" },
+    { "name": "DurationMonitoringSettings", "description": "an OData controller" },
+    { "name": "DynamicPropertyDescriptor", "description": "an OData controller" },
+    { "name": "EventLogEntries", "description": "an OData controller" },
+    { "name": "Gateways", "description": "an OData controller" },
+    { "name": "Groups", "description": "an OData controller" },
+    { "name": "LoggedDevices", "description": "an OData controller" },
+    { "name": "Notifications", "description": "an OData controller" },
+    { "name": "Products", "description": "an OData controller" },
+    { "name": "Profiles", "description": "an OData controller" },
+    { "name": "Reports", "description": "an OData controller" },
+    { "name": "Roles", "description": "an OData controller" },
+    { "name": "Rules", "description": "an OData controller" },
+    { "name": "SchemaDefinitions", "description": "an OData controller" },
+    { "name": "Tasks", "description": "an OData controller" },
+    { "name": "Tenants", "description": "an OData controller" },
+    { "name": "TenantTemplates", "description": "an OData controller" },
+    { "name": "Users", "description": "an OData controller" }
+  ]
+}
