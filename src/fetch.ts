@@ -1,6 +1,6 @@
 import AxonizeApiClient from ".";
 import ClientError from "./ClientError";
-import { GenericObject } from "./types/common";
+import { IGenericObject } from "./types/common";
 const HEADER_AUTH = 'Authorization';
 const HEADER_BEARER = 'BEARER';
 const HEADER_REQUESTED_WITH = 'X-Requested-With';
@@ -17,7 +17,7 @@ export class Fetch {
   public getOptions(options: IFetchGenericOptions) {
     const newOptions = { ...options };
 
-    let headers: GenericObject = {
+    let headers: IGenericObject = {
       [HEADER_REQUESTED_WITH]: 'XMLHttpRequest',
       ...this.client.defaults.getDefaultHeaders(),
     };

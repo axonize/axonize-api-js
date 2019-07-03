@@ -1,4 +1,4 @@
-import { GenericObject } from "./types/common";
+import { IGenericObject } from "./types/common";
 
 export class Defaults {
   protected token: string;
@@ -55,7 +55,7 @@ export class Defaults {
     return this.includeCookies;
   }
 
-  public setDefaultHeaders(headers: GenericObject) {
+  public setDefaultHeaders(headers: IGenericObject) {
     this.defaultHeaders = headers;
   }
 

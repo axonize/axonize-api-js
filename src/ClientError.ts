@@ -1,14 +1,14 @@
-interface ErrorMessage {
+interface IErrorMessage {
   message: string,
   url: string,
   statusCode: number;
 }
 
 export default class ClientError extends Error {
-  url: string;
-  statusCode: number;
+  public url: string;
+  public statusCode: number;
 
-  constructor(data: ErrorMessage) {
+  constructor(data: IErrorMessage) {
       super(data.message);
 
       this.message = data.message;
