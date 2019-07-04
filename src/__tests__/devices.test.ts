@@ -14,7 +14,6 @@ test('Test basic devices call', () => {
   });
 });
 
-
 test('Test get single device entity', () => {
   nock('https://api.axonize.com')
     .get('/odata/devices/1')
