@@ -5,14 +5,12 @@ export class Defaults {
   protected url: string;
   protected userAgent: string | null;
   protected defaultHeaders: { [s: string]: string };
-  protected includeCookies: boolean;
 
   constructor() {
     this.token = '';
     this.url = 'https://api.axonize.com';
     this.userAgent = null;
     this.defaultHeaders = {};
-    this.includeCookies = true;
   }
 
   public getUrl() {
@@ -45,14 +43,6 @@ export class Defaults {
 
   public setToken(token: string) {
     this.token = token;
-  }
-
-  public setIncludeCookies(include: boolean) {
-    this.includeCookies = include;
-  }
-
-  public getIncludeCookies() {
-    return this.includeCookies;
   }
 
   public setDefaultHeaders(headers: IGenericObject) {

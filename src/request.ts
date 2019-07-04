@@ -28,10 +28,6 @@ export class Request {
       headers[HEADER_CLIENT_SECRET] = this.client.auth.getClientSecret();
     }
 
-    if (this.client.defaults.getIncludeCookies()) {
-      newOptions.withCredentials = true;
-    }
-
     if (this.client.defaults.getUserAgent()) {
       headers[HEADER_USER_AGENT] = this.client.defaults.getUserAgent();
     }
