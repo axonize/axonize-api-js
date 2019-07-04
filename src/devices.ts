@@ -5,7 +5,7 @@ export class Devices {
   constructor(private client: AxonizeApiClient) {}
 
   public getDevicesRoute() {
-    return `${this.client.defaults.getODataBaseRoute()}/users`;
+    return `${this.client.defaults.getODataBaseRoute()}/devices`;
   }
 
   public getDevices(): Promise<IDevice[]> {
