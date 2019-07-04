@@ -35,6 +35,7 @@ jobs:
           paths: .
   deploy:
     <<: *defaults
+    type: approval
     steps:
       - attach_workspace:
           at: ~/repo
