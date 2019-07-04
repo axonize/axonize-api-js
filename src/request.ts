@@ -1,4 +1,3 @@
-
 import axios, { AxiosRequestConfig } from 'axios';
 import AxonizeApiClient from '.';
 import ClientError from './ClientError';
@@ -48,12 +47,10 @@ export class Request {
   }
 
   public doFetch = async (url: string, options: AxiosRequestConfig) => {
-
     try {
       const response = await axios(url, this.getOptions(options));
       return response.data;
-    }
-    catch (error) {
+    } catch (error) {
       throw new ClientError({
         message: error.message,
         statusCode: error.response && error.response.status,
