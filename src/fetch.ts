@@ -53,24 +53,20 @@ export class Fetch {
   public doFetchWithResponse = async (url: string, options: IFetchGenericOptions) => {
     const response = await fetch(url, this.getOptions(options));
 
-    let data;
-    try {
-      data = await response.json();
-    } catch (err) {
-      throw err;
-    }
-
     if (response.ok) {
-      return {
-        data,
-        response,
-      };
+      try {
+        const data = await response.json();
+        return {
+          data,
+          response,
+        };
+      } catch (err) {
+        throw err;
+      }
     }
-
-    const msg = data.message || '';
 
     throw new ClientError({
-      message: msg,
+      message: response.statusText,
       statusCode: response.status,
       url,
     });
