@@ -1,1 +1,3 @@
-export interface IGenericObject{ [key: string]: any };
+export interface IGenericObject {
+  [key: string]: any;
+}

@@ -1,5 +1,5 @@
-import { IAdditionalProperty } from "./additionalProperties";
-import { IAlarmInstanceNode } from "./alarms";
+import { IAdditionalProperty } from './additionalProperties';
+import { IAlarmInstanceNode } from './alarms';
 
 export interface ICoords {
   x: number;
@@ -17,7 +17,7 @@ export interface IDevice {
   firstTimeRegistrationDate?: string;
   activationDate?: string;
   token?: string;
-  commandsProtocol?: "Undefined" | "Http" | "Amqp" | "Modbus" | "SNMP" | "OPCUA" | "HubJsonSender" | "Test";
+  commandsProtocol?: 'Undefined' | 'Http' | 'Amqp' | 'Modbus' | 'SNMP' | 'OPCUA' | 'HubJsonSender' | 'Test';
   lastReadingTime?: string;
   isConnected?: boolean;
   hubId?: string;
@@ -29,7 +29,7 @@ export interface IDevice {
   keepAliveThreshold?: number;
   alarmInstances?: IAlarmInstanceNode[];
   isAlarmed?: boolean;
-  virtualDeviceStatus?: "NotAvailable" | "Started" | "Stopped";
+  virtualDeviceStatus?: 'NotAvailable' | 'Started' | 'Stopped';
   virtualDeviceEvents?: string;
   coords?: ICoords;
   redisKey?: string;

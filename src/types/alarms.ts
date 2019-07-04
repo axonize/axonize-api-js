@@ -6,8 +6,8 @@ export interface IAlarmInstance {
   readingDateTimeOffset?: string; // date-time
   ruleId?: string;
   eventName?: string;
-  severity?: "Warning" | "Minor" | "Major" | "Critical";
-  status?: "Open" | "Closed";
+  severity?: 'Warning' | 'Minor' | 'Major' | 'Critical';
+  status?: 'Open' | 'Closed';
   snoozeExpirationDate?: string; // date-time
   message?: string;
   id?: string;

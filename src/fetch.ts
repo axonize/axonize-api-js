@@ -1,17 +1,16 @@
-import AxonizeApiClient from ".";
-import ClientError from "./ClientError";
-import { IGenericObject } from "./types/common";
+import AxonizeApiClient from '.';
+import ClientError from './ClientError';
+import { IGenericObject } from './types/common';
 const HEADER_AUTH = 'Authorization';
 const HEADER_BEARER = 'BEARER';
 const HEADER_REQUESTED_WITH = 'X-Requested-With';
 const HEADER_USER_AGENT = 'User-Agent';
 
 interface IFetchGenericOptions extends RequestInit {
-  [key: string]: any
+  [key: string]: any;
 }
 
 export class Fetch {
-
   constructor(private client: AxonizeApiClient) {}
 
   public getOptions(options: IFetchGenericOptions) {

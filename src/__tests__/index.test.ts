@@ -8,7 +8,7 @@ test('Base Configurations', () => {
 test('Set Url method', () => {
   const api = new Api();
   const exampleUrl = 'https://google.com';
-  api.defaults.setUrl(exampleUrl)
+  api.defaults.setUrl(exampleUrl);
 
   expect(api.defaults.getUrl()).toBe(exampleUrl);
 });

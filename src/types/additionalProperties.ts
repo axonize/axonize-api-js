@@ -4,5 +4,5 @@ export interface IAdditionalProperty {
   value?: string;
   iconName?: string;
   iconColor?: string;
-  severity?: "Warning" | "Minor" | "Major" | "Critical";
+  severity?: 'Warning' | 'Minor' | 'Major' | 'Critical';
 }

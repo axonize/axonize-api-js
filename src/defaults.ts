@@ -1,4 +1,4 @@
-import { IGenericObject } from "./types/common";
+import { IGenericObject } from './types/common';
 
 export class Defaults {
   protected token: string;
