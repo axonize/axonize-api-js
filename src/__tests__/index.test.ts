@@ -13,14 +13,12 @@ test('Set Url method', () => {
   expect(api.defaults.getUrl()).toBe(exampleUrl);
 });
 
-
 test('Test Client Id', () => {
-  const api = new Api({ clientId: 'clientId', clientSecret: 'clientSecret'});
+  const api = new Api({ clientId: 'clientId', clientSecret: 'clientSecret' });
   expect(api.auth.getClientID()).toBe('clientId');
 });
 
-
 test('Test Client Secret', () => {
-  const api = new Api({ clientId: 'clientId', clientSecret: 'clientSecret'});
+  const api = new Api({ clientId: 'clientId', clientSecret: 'clientSecret' });
   expect(api.auth.getClientSecret()).toBe('clientSecret');
 });

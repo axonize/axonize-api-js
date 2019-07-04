@@ -1,6 +1,6 @@
 export interface IAuthOptions {
-  clientId?: string,
-  clientSecret?: string,
+  clientId?: string;
+  clientSecret?: string;
 }
 
 export class Auth {
@@ -22,4 +22,3 @@ export class Auth {
     this.credentials.clientSecret = clientSecret;
   }
 }
-
