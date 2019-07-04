@@ -2,10 +2,13 @@ import fetch, { RequestInit } from 'node-fetch';
 import AxonizeApiClient from '.';
 import ClientError from './ClientError';
 import { IGenericObject } from './types/common';
+
 const HEADER_AUTH = 'Authorization';
 const HEADER_BEARER = 'BEARER';
 const HEADER_REQUESTED_WITH = 'X-Requested-With';
 const HEADER_USER_AGENT = 'User-Agent';
+const HEADER_CLIENT_ID = 'ClientId';
+const HEADER_CLIENT_SECRET = 'ClientSecret';
 
 interface IFetchGenericOptions extends RequestInit {
   [key: string]: any;
@@ -24,6 +27,9 @@ export class Fetch {
 
     if (this.client.defaults.getToken()) {
       headers[HEADER_AUTH] = `${HEADER_BEARER} ${this.client.defaults.getToken()}`;
+    } else if (this.client.auth.getClientID() && this.client.auth.getClientSecret()) {
+      headers[HEADER_CLIENT_ID] = this.client.auth.getClientID();
+      headers[HEADER_CLIENT_SECRET] = this.client.auth.getClientSecret();
     }
 
     if (this.client.defaults.getIncludeCookies()) {
