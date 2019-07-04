@@ -1,18 +1,23 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext",
-      "es2015", // <= doesn't help
-      "es6", // <= doesn't help
-    ],
+    "moduleResolution": "node",
     "target": "es5",
-    "module": "commonjs",
+    "module":"commonjs",
+    "lib": ["es2015", "es2016", "es2017", "dom"],
+    "strict": true,
+    "sourceMap": true,
     "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declarationDir": "./lib/types",
     "outDir": "./lib",
-    "strict": true
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   },
-  "include": ["src"],
+  "include": [
+    "src"
+  ],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

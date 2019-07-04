@@ -3,7 +3,7 @@ import { Defaults } from './defaults';
 import { Devices } from './devices';
 import { Fetch } from './fetch';
 
-export default class AxonizeApiClient {
+export class AxonizeApiClient {
   public defaults = new Defaults();
   public fetch = new Fetch(this);
   public devices = new Devices(this);
@@ -13,3 +13,5 @@ export default class AxonizeApiClient {
     this.auth = new Auth(credentials);
   }
 }
+
+export default AxonizeApiClient;
