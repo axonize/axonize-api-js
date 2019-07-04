@@ -1,3 +1,4 @@
+import fetch, { RequestInit } from 'node-fetch';
 import AxonizeApiClient from '.';
 import ClientError from './ClientError';
 import { IGenericObject } from './types/common';
