@@ -1,11 +1,10 @@
 import * as nock from 'nock';
 import Api from '../index';
-import ClientError from '../ClientError';
 
 test('Test basic devices call', () => {
   nock('https://api.axonize.com')
     .get('/odata/devices')
-    .reply(200, [{ name: 'Device 1' }]);
+    .reply(200, { value: [{ name: 'Device 1' }] });
 
   const api = new Api();
 

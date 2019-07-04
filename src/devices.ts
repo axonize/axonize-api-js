@@ -12,11 +12,12 @@ export class Devices {
     return `${this.client.defaults.getODataBaseRoute()}/devices/${deviceId}`;
   }
 
-  public getDevices(): Promise<IDevice[]> {
-    return this.client.fetch.doFetch(this.getDevicesRoute(), { method: 'GET' });
+  public async getDevices(): Promise<IDevice[]> {
+    const data = await this.client.request.doFetch(this.getDevicesRoute(), { method: 'GET' });
+    return data.value;
   }
 
   public getDevice(id: string): Promise<IDevice> {
-    return this.client.fetch.doFetch(this.getDeviceRoute(id), { method: 'GET' });
+    return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'GET' });
   }
 }

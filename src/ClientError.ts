@@ -1,12 +1,12 @@
 interface IErrorMessage {
   message: string;
   url: string;
-  statusCode: number;
+  statusCode?: number;
 }
 
 export default class ClientError extends Error {
   public url: string;
-  public statusCode: number;
+  public statusCode?: number;
 
   constructor(data: IErrorMessage) {
     super(data.message);
