@@ -20,4 +20,8 @@ export class Devices {
   public getDevice(id: string): Promise<IDevice> {
     return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'GET' });
   }
+
+  public deleteDevice(id: string) {
+    return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'DELETE' });
+  }
 }
