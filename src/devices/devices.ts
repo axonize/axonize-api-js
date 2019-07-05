@@ -1,5 +1,5 @@
-import AxonizeApiClient from '.';
-import { IDevice } from './types/devices';
+import AxonizeApiClient from '..';
+import { IDevice } from './types';
 
 export class Devices {
   constructor(private client: AxonizeApiClient) {}

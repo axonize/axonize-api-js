@@ -1,5 +1,5 @@
-import { IAdditionalProperty } from './additionalProperties';
-import { IAlarmInstanceNode } from './alarms';
+import { IAlarmInstanceNode } from '../alarms/types';
+import { IAdditionalProperty } from '../types/additionalProperties';
 
 export interface ICoords {
   x: number;

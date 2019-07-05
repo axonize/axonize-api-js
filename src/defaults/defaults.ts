@@ -1,10 +1,10 @@
-import { IGenericObject } from './types/common';
+import { IGenericObject } from '../types/common';
 
 export class Defaults {
   protected token: string;
   protected url: string;
   protected userAgent: string | null;
-  protected defaultHeaders: { [s: string]: string };
+  protected defaultHeaders: IGenericObject;
 
   constructor() {
     this.token = '';

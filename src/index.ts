@@ -1,7 +1,8 @@
-import { Auth, IAuthOptions } from './auth';
-import { Defaults } from './defaults';
-import { Devices } from './devices';
-import { Request } from './request';
+import { Auth } from './auth/auth';
+import { IAuthOptions } from './auth/types';
+import { Defaults } from './defaults/defaults';
+import { Devices } from './devices/devices';
+import { Request } from './request/request';
 
 export class AxonizeApiClient {
   public defaults = new Defaults();

@@ -1,7 +1,4 @@
-export interface IAuthOptions {
-  clientId?: string;
-  clientSecret?: string;
-}
+import { IAuthOptions } from './types';
 
 export class Auth {
   constructor(protected credentials: IAuthOptions = {}) {}
