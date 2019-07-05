@@ -1,6 +1,6 @@
 {
   "name": "@axonize/api",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": false,
   "description": "Axonize API client library",
   "main": "lib/index.js",
