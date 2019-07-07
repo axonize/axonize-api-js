@@ -7,6 +7,10 @@ import { Request } from './request/request';
 export class AxonizeApiClient {
   public defaults = new Defaults();
   public request = new Request(this);
+
+  /**
+   * 
+   */
   public devices = new Devices(this);
   public auth: Auth;
 
