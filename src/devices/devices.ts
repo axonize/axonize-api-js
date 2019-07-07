@@ -45,6 +45,17 @@ export class Devices {
   }
 
   /**
+   * Generate SAS token for the desired device.
+   * @param id The device ID.
+   * @param daysTTL Token expiration in days.
+   */
+  public async generateSASToken(id: string, daysTTL: number = 45): Promise<string> {
+    const data = { daysTTL };
+    const token = await this.client.request.doFetch(this.getDeviceGenerateSASTokenRoute(id), { method: 'POST', data });
+    return token.value;
+  }
+
+  /**
    * Delete the desired device according to the ID.
    * @param id The device ID.
    */
@@ -58,5 +69,9 @@ export class Devices {
 
   private getDeviceRoute(deviceId: string) {
     return `${this.client.defaults.getODataBaseRoute()}/devices/${deviceId}`;
+  }
+
+  private getDeviceGenerateSASTokenRoute(deviceId: string) {
+    return `${this.getDeviceRoute(deviceId)}/generateSASToken`;
   }
 }
