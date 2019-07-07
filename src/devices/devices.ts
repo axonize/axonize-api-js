@@ -4,9 +4,9 @@ import { IDevice } from './types';
 export class Devices {
   /**
    * Devices Api
-   * 
+   *
    * Manage your Axonize devices inventory.
-   * @param client 
+   * @param client
    */
   constructor(private client: AxonizeApiClient) {}
 
@@ -25,6 +25,23 @@ export class Devices {
    */
   public getDevice(id: string): Promise<IDevice> {
     return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'GET' });
+  }
+
+  /**
+   * Adds a device to a application.
+   * @param data The initial device data.
+   */
+  public addDevice(data: Partial<IDevice>): Promise<IDevice> {
+    return this.client.request.doFetch(this.getDevicesRoute(), { method: 'POST', data });
+  }
+
+  /**
+   * Update devices entity.
+   * @param id The device ID.
+   * @param data The device properties to update.
+   */
+  public updateDevice(id: string, data: Partial<IDevice>): Promise<IDevice> {
+    return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'PATCH', data });
   }
 
   /**

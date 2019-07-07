@@ -2,11 +2,13 @@ import axios, { AxiosRequestConfig } from 'axios';
 import AxonizeApiClient from '..';
 import ClientError from '../ClientError';
 import { IGenericObject } from '../types/common';
+import { get } from '../utils/get';
 import {
   HEADER_AUTH,
   HEADER_BEARER,
   HEADER_CLIENT_ID,
   HEADER_CLIENT_SECRET,
+  HEADER_PREFER,
   HEADER_REQUESTED_WITH,
   HEADER_USER_AGENT,
 } from './constants';
@@ -19,6 +21,7 @@ export class Request {
 
     let headers: IGenericObject = {
       [HEADER_REQUESTED_WITH]: 'XMLHttpRequest',
+      [HEADER_PREFER]: 'return=representation',
       ...this.client.defaults.getDefaultHeaders(),
     };
 
@@ -49,7 +52,7 @@ export class Request {
       return response.data;
     } catch (error) {
       throw new ClientError({
-        message: error.message,
+        message: get(error, ['response', 'data', 'error', 'message'], error.message),
         statusCode: error.response && error.response.status,
         url,
       });

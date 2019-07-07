@@ -44,4 +44,5 @@ export interface IDevice {
   createUser?: string;
   updateDate?: string;
   updateUser?: string;
+  [key: string]: any;
 }
