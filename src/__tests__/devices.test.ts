@@ -1,12 +1,6 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
-
-const getCredentialsFromENV = () => {
-  return {
-    clientId: process.env.clientId,
-    clientSecret: process.env.clientSecret,
-  };
-};
+import { getCredentialsFromENV } from '../utils/tests';
 
 test('Test basic devices call', () => {
   const api = new Api(getCredentialsFromENV());

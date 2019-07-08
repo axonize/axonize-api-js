@@ -68,7 +68,7 @@ export class Devices {
   }
 
   private getDeviceRoute(deviceId: string) {
-    return `${this.client.defaults.getODataBaseRoute()}/devices/${deviceId}`;
+    return `${this.getDevicesRoute()}/${deviceId}`;
   }
 
   private getDeviceGenerateSASTokenRoute(deviceId: string) {
