@@ -42,10 +42,9 @@ test('Update device', async () => {
   expect(updatedDevice.libraryTestProperty).toEqual(generateId);
 });
 
-
 test('Generate SAS Token', async () => {
   const api = new Api(getCredentialsFromENV());
-  const deviceId = process.env.deviceID || ''
+  const deviceId = process.env.deviceID || '';
 
   const token = await api.devices.generateSASToken(deviceId);
   expect(token.includes(deviceId)).toEqual(true);

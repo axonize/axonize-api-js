@@ -1,6 +1,6 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
-import { getCredentialsFromENV } from "../utils/tests";
+import { getCredentialsFromENV } from '../utils/tests';
 
 test('Test getProducts method', () => {
   const api = new Api(getCredentialsFromENV());

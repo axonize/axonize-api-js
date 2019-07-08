@@ -1,4 +1,4 @@
-import { IAdditionalProperty } from "../types/additionalProperties";
+import { IAdditionalProperty } from '../types/additionalProperties';
 
 export interface IProduct {
   urn?: string;
