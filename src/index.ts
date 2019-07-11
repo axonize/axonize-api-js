@@ -1,3 +1,4 @@
+import { Alarms } from './alarms/alarms';
 import { Auth } from './auth/auth';
 import { IAuthOptions } from './auth/types';
 import { Defaults } from './defaults/defaults';
@@ -10,6 +11,7 @@ export class AxonizeApiClient {
   public request = new Request(this);
   public devices = new Devices(this);
   public products = new Products(this);
+  public alarms = new Alarms(this);
   public auth: Auth;
 
   constructor(credentials?: IAuthOptions) {

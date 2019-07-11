@@ -10,8 +10,8 @@ export interface IAlarmInstance {
   status?: 'Open' | 'Closed';
   snoozeExpirationDate?: string; // date-time
   message?: string;
-  id?: string;
-  appId?: string;
+  id: string;
+  appId: string;
   createDate?: string; // date-time
   createUser?: string;
   updateDate?: string; // date-time
