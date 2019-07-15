@@ -1,5 +1,5 @@
 import { AxonizeApiClient } from '..';
-import { ILocales } from './types';
+import { ILocales, Language, ISupportedLanguage } from './types';
 
 export class Locales {
   /**
@@ -11,11 +11,18 @@ export class Locales {
   constructor(private client: AxonizeApiClient) {}
 
   /**
-   * Returns the desired device according to the ID.
-   * @param id The device ID.
+   * Returns the desired language keys according to the locale.
+   * @param locale The desired language.
    */
-  public getLocale(locale: string): Promise<ILocales> {
+  public getLocale(locale: Language): Promise<ILocales> {
     return this.client.request.doFetch(this.getLocaleRoute(locale), { method: 'GET' });
+  }
+
+  /**
+   * Returns Axonize Supported languages.
+   */
+  public getSupportedLanguages(): Promise<ISupportedLanguage[]> {
+    return this.client.request.doFetch(this.getSupportedLanguagesRoute(), { method: 'GET' });
   }
 
   private getLocaleBaseRoute() {
@@ -24,5 +31,9 @@ export class Locales {
 
   private getLocaleRoute(locale: string) {
     return `${this.getLocaleBaseRoute()}/${locale}`;
+  }
+
+  private getSupportedLanguagesRoute() {
+    return `${this.getLocaleBaseRoute()}/supportedLanguages`;
   }
 }

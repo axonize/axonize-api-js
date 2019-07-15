@@ -16,3 +16,12 @@ test('Test getLocales de', () => {
     expect(locales.msg_device).toEqual('Gerät');
   });
 });
+
+
+test('Test getSupportedLanguages', () => {
+  const api = new Api(getCredentialsFromENV());
+
+  return api.locales.getSupportedLanguages().then(locales => {
+    expect(!!locales.find(l => l.key === "en")).toEqual(true);
+  });
+});
