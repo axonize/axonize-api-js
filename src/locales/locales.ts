@@ -1,5 +1,5 @@
-import { AxonizeApiClient } from "..";
-import { ILocales } from "./types";
+import { AxonizeApiClient } from '..';
+import { ILocales } from './types';
 
 export class Locales {
   /**
@@ -25,5 +25,4 @@ export class Locales {
   private getLocaleRoute(locale: string) {
     return `${this.getLocaleBaseRoute()}/${locale}`;
   }
-
 }
