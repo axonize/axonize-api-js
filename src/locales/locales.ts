@@ -1,5 +1,5 @@
 import { AxonizeApiClient } from '..';
-import { ILocales, Language, ISupportedLanguage } from './types';
+import { ILocales, ISupportedLanguage, Language } from './types';
 
 export class Locales {
   /**
