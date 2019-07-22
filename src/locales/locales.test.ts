@@ -17,11 +17,10 @@ test('Test getLocales de', () => {
   });
 });
 
-
 test('Test getSupportedLanguages', () => {
   const api = new Api(getCredentialsFromENV());
 
   return api.locales.getSupportedLanguages().then(locales => {
-    expect(!!locales.find(l => l.key === "en")).toEqual(true);
+    expect(!!locales.find(l => l.key === 'en')).toEqual(true);
   });
 });

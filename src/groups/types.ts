@@ -1,4 +1,4 @@
-import { IDeviceNode } from "../devices/types";
+import { IDeviceNode } from '../devices/types';
 
 export interface IGroup {
   info?: string;
