@@ -2,19 +2,19 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
-test('Test getAlarms method', () => {
+test('Test getGroups method', () => {
   const api = new Api(getCredentialsFromENV());
 
-  return api.alarms.getAlarms().then(alarms => {
-    expect(!!alarms.length).toEqual(true);
+  return api.groups.getGroups().then(groups => {
+    expect(!!groups.length).toEqual(true);
   });
 });
 
-test('Test alarm not found', async () => {
+test('Test group not found', async () => {
   const api = new Api(getCredentialsFromENV());
 
   try {
-    await api.alarms.getAlarm('2');
+    await api.groups.getGroup('2');
   } catch (e) {
     expect(e.statusCode).toEqual(404);
   }
@@ -23,10 +23,10 @@ test('Test alarm not found', async () => {
 test('Update product', async () => {
   const api = new Api(getCredentialsFromENV());
 
-  const alarms = await api.alarms.getAlarms();
-  const alarm = alarms[0];
+  const groups = await api.groups.getGroups();
+  const group = groups[0];
   const generateId = generateID();
 
-  const updatedDevice = await api.alarms.updateAlarm(alarm.id, { message: generateId });
-  expect(updatedDevice.message).toEqual(generateId);
+  const updatedGroup = await api.groups.updateGroup(group.id, { info: generateId });
+  expect(updatedGroup.info).toEqual(generateId);
 });

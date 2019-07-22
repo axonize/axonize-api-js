@@ -46,3 +46,8 @@ export interface IDevice {
   updateUser?: string;
   [key: string]: any;
 }
+
+export interface IDeviceNode {
+  id: string;
+  name?: string;
+}

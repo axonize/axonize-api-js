@@ -27,6 +27,6 @@ test('Update product', async () => {
   const product = products[0];
   const generateId = generateID();
 
-  const updatedDevice = await api.products.updateProduct(product.id, { libraryTestProperty: generateId });
-  expect(updatedDevice.libraryTestProperty).toEqual(generateId);
+  const updatedProduct = await api.products.updateProduct(product.id, { libraryTestProperty: generateId });
+  expect(updatedProduct.libraryTestProperty).toEqual(generateId);
 });
