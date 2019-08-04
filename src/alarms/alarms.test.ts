@@ -20,7 +20,7 @@ test('Test alarm not found', async () => {
   }
 });
 
-test('Update product', async () => {
+test('Update alarm', async () => {
   const api = new Api(getCredentialsFromENV());
 
   const alarms = await api.alarms.getAlarms();
