@@ -1,19 +1,30 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
 
-test('Test create gateway', async () => {
-  const api = new Api();
+describe('Gateway APIs', () => {
+  const testId = generateID();
+  const testManufacturer = `api-client-test-${testId}`;
 
-  api.defaults.setUrl('http://api.dev.axonize.com');
-  api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
+  test('Test create and delete gateway', async () => {
+    const api = new Api();
+  
+    api.defaults.setUrl('http://api.dev.axonize.com');
+    api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
+  
+    const gatewayResponse = await api.gateways.create({
+      "name": `dev-http-gateway-api-client-test-${testId}`,
+      "type": "HttpGatewayProducer",
+      "manufacturer": testManufacturer,
+    })
 
-  const gatewayResponse = await api.gateways.create({
-    "name": `dev-http-gateway-api-client-test-${generateID()}`,
-    "type": "HttpGatewayProducer",
-    "manufacturer": `api-client-test-${generateID()}`,
-  })
+    expect(gatewayResponse).toHaveProperty(
+      'manufacturer', testManufacturer
+    )
 
-  expect(gatewayResponse).toHaveProperty(
-    'status'
-  )
-});
+    const sendDeletionRequest = async () => await api.gateways.delete({
+      "id": gatewayResponse.id
+    })
+
+    expect(sendDeletionRequest).not.toThrow()
+  });
+})
