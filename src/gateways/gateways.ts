@@ -25,6 +25,13 @@ export class Gateways {
     return this.client.request.doFetch(this.getODataResource(gatewayId.id), { method: 'DELETE' });
   }
 
+  /**
+   * get Gateway
+   */
+  public get(gatewayId: Pick<Gateway, 'id'>): Promise<Gateway> {
+    return this.client.request.doFetch(this.getODataResource(gatewayId.id), { method: 'GET' });
+  }
+
   private getGatewayRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/gateways`;
   }
