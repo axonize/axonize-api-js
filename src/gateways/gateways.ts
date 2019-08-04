@@ -1,5 +1,5 @@
 import AxonizeApiClient from '..';
-import { GatewayCreationRequest } from './types';
+import { Gateway } from './types';
 
 export class Gateways {
   /**
@@ -11,17 +11,13 @@ export class Gateways {
   constructor(private client: AxonizeApiClient) {}
   /**
    * Create and Install a Protocol Gateway
-   * @param data configuration data
+   * @param gateway
    */
-  public createAndInstallGateway(gatewayCreationRequest: GatewayCreationRequest): Promise<any> {
-    return this.client.request.doFetch(this.createAndInstallGatewayRoute(), { method: 'POST', data: gatewayCreationRequest });
+  public create(gateway: Pick<Gateway, 'name' | 'manufacturer' | 'type'>): Promise<Gateway> {
+    return this.client.request.doFetch(this.getGatewayRoute(), { method: 'POST', data: gateway });
   }
 
   private getGatewayRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/gateways`;
-  }
-
-  private createAndInstallGatewayRoute() {
-    return `${this.getGatewayRoute()}/CreateAndInstall`;
   }
 }
