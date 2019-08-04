@@ -1,15 +1,19 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
-import { getCredentialsFromENV } from '../utils/tests';
 
-test('Test create gateway', (done) => {
-  const api = new Api(getCredentialsFromENV());
+test('Test create gateway', async () => {
+  const api = new Api();
 
-  return api.gateways.create({
-    "name": `dev-http-gateway-api-client-test-${generateID}`,
+  api.defaults.setUrl('http://api.dev.axonize.com');
+  api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
+
+  const gatewayResponse = await api.gateways.create({
+    "name": `dev-http-gateway-api-client-test-${generateID()}`,
     "type": "HttpGatewayProducer",
-    "manufacturer": "MichaelSalaverry",
-  }).then(response => {
-    expect(response).toMatchSnapshot()
-  });
+    "manufacturer": `api-client-test-${generateID()}`,
+  })
+
+  expect(gatewayResponse).toHaveProperty(
+    'status'
+  )
 });

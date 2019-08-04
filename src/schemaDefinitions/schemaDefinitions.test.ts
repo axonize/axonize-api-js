@@ -15,7 +15,7 @@ test('Test create Schema Definition', (done) => {
       {
         "attributePath": "temperature",
         "actionType": "Event",
-        "name": "michaelApiClientTemperature",
+        "name": "ApiClientTestTemperature",
         "typeCode": 7,
         "unit": "C"
       }
