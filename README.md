@@ -23,6 +23,7 @@ Add a local file in the directory root '.env' to setup your [dotenv](https://git
 clientId=CLIENT_ID
 clientSecret=CLIENT_SECRET
 deviceID=A_DEVICE_ID
+internalApiKey=INTERNAL_API_KEY
 ```
 
 ## Test

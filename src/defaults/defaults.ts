@@ -5,12 +5,14 @@ export class Defaults {
   protected url: string;
   protected userAgent: string | null;
   protected defaultHeaders: IGenericObject;
+  protected internalApiKey: string | null;
 
   constructor() {
     this.token = '';
     this.url = 'https://api.axonize.com';
     this.userAgent = null;
     this.defaultHeaders = {};
+    this.internalApiKey = '';
   }
 
   public getUrl() {
@@ -43,6 +45,14 @@ export class Defaults {
 
   public setToken(token: string) {
     this.token = token;
+  }
+
+  public getInternalApiKey() {
+    return this.internalApiKey;
+  }
+
+  public setInternalApiKey(InternalApiKey: string) {
+    this.internalApiKey = InternalApiKey;
   }
 
   public setDefaultHeaders(headers: IGenericObject) {

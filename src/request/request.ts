@@ -11,6 +11,7 @@ import {
   HEADER_PREFER,
   HEADER_REQUESTED_WITH,
   HEADER_USER_AGENT,
+  HEADER_INTERNAL_API_KEY,
 } from './constants';
 
 export class Request {
@@ -30,6 +31,10 @@ export class Request {
     } else if (this.client.auth.getClientID() && this.client.auth.getClientSecret()) {
       headers[HEADER_CLIENT_ID] = this.client.auth.getClientID();
       headers[HEADER_CLIENT_SECRET] = this.client.auth.getClientSecret();
+    }
+
+    if (this.client.defaults.getInternalApiKey()) {
+      headers[HEADER_INTERNAL_API_KEY] = this.client.defaults.getInternalApiKey()
     }
 
     if (this.client.defaults.getUserAgent()) {
