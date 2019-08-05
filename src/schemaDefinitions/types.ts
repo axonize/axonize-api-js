@@ -15,12 +15,16 @@ export interface Schema {
     attributePath: string;
     actionType:    string;
     convertInfo?:  ConvertInfo;
-    name?:         string;
-    typeCode?:     number;
-    unit?:         string;
+    event?: SchemaEvent;
 }
 
 export interface ConvertInfo {
     functionType: string;
     parameters?:  string[];
+}
+
+export interface SchemaEvent {
+    name:         string;
+    typeCode:     number;
+    unit:         string;
 }

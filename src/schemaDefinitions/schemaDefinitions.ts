@@ -17,6 +17,13 @@ export class SchemaDefinitions {
     return this.client.request.doFetch(this.getSchemaDefinitionsRoute(), { method: 'POST', data: schemaDefinition });
   }
 
+  /**
+   * parseSchemaWithEvent
+   */
+  public parseSchemaWithEvent(data: {deviceId: string, payload: string}) {
+    return this.client.request.doFetch(this.getSchemaDefinitionsRoute() + '/parseSchema', { method: 'POST', data});
+  }
+
   private getSchemaDefinitionsRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/schemaDefinitions`;
   }
