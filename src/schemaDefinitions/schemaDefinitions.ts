@@ -20,8 +20,8 @@ export class SchemaDefinitions {
   /**
    * parseSchemaWithEvent
    */
-  public parseSchemaWithEvent(data: {deviceId: string, payload: string}) {
-    return this.client.request.doFetch(this.getSchemaDefinitionsRoute() + '/parseSchema', { method: 'POST', data});
+  public parseSchemaWithEvent(data: {deviceId: string, payload: string, sendToHub: boolean}) {
+    return this.client.request.doFetch(this.getSchemaDefinitionsRoute() + '/Parse', { method: 'POST', data});
   }
 
   private getSchemaDefinitionsRoute() {

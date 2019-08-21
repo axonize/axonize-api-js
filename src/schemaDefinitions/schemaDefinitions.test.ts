@@ -35,16 +35,16 @@ test('Test create Schema Definition', (done) => {
 test('Test schema definition against example event', (done) => {
   const api = new Api();
 
-  const deviceId = '5d3eb49efeae0d21ec353bd6';
+  const deviceId = '5d5966f4e3b0c626cc88a15d';
   const payload = JSON.stringify({
-    deviceId: generateID(),
+    deviceId: 'autoDiscoverytestdevice',
     temperature: 12,
   });
 
   api.defaults.setUrl('http://api.dev.axonize.com');
   api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
 
-  return api.schemaDefinitions.parseSchemaWithEvent({ deviceId, payload }).then(_ => {
+  return api.schemaDefinitions.parseSchemaWithEvent({ deviceId, payload, sendToHub: false }).then(_ => {
     done()
   });
 })

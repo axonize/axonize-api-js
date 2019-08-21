@@ -5,6 +5,7 @@ describe('Gateway APIs', () => {
   test('Test create and delete gateway', async () => {
     const testId = generateID();
     const testManufacturer = `api-client-test-${testId}`;
+    const testProductId = '5b990c2221b5bc5244ebde78';
 
     const api = new Api();
   
@@ -15,6 +16,7 @@ describe('Gateway APIs', () => {
       "name": `dev-http-gateway-api-client-test-${testId}`,
       "type": "HttpGatewayProducer",
       "manufacturer": testManufacturer,
+      "productId": testProductId
     })
 
     expect(gatewayResponse).toHaveProperty(
@@ -31,6 +33,7 @@ describe('Gateway APIs', () => {
   test('Test get gateway', async () => {
     const testId = generateID();
     const testManufacturer = `api-client-test-${testId}`;
+    const testProductId = '5b990c2221b5bc5244ebde78';
 
     const api = new Api();
   
@@ -41,6 +44,7 @@ describe('Gateway APIs', () => {
       "name": `dev-http-gateway-api-client-test-${testId}`,
       "type": "HttpGatewayProducer",
       "manufacturer": testManufacturer,
+      "productId": testProductId,
     })
 
     expect(gatewayResponse).toHaveProperty(
