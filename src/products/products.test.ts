@@ -30,3 +30,14 @@ test('Update product', async () => {
   const updatedProduct = await api.products.updateProduct(product.id, { libraryTestProperty: generateId });
   expect(updatedProduct.libraryTestProperty).toEqual(generateId);
 });
+
+test('Attach Schema Definition to a Product', async () => {
+  const api = new Api(getCredentialsFromENV());
+
+  const products = await api.products.getProducts();
+  const product = products[0];
+  const generatedId = generateID();
+
+  const updatedProduct = await api.products.updateProduct(product.id, { schemaDefinitionsId: generatedId });
+  expect(updatedProduct.schemaDefinitionsId).toEqual(generatedId);
+});
