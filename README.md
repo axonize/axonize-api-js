@@ -14,3 +14,19 @@ Or
 ```sh
 $ yarn add @axonize/api
 ```
+
+## Setup
+Add a local file in the directory root '.env' to setup your [dotenv](https://github.com/motdotla/dotenv) environment variables
+```
+# .env
+# Axonize API Client dotenv environment variables
+clientId=CLIENT_ID
+clientSecret=CLIENT_SECRET
+deviceID=A_DEVICE_ID
+internalApiKey=INTERNAL_API_KEY
+```
+
+## Test
+```sh
+$ yarn test
+```

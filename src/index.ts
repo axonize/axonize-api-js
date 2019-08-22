@@ -7,6 +7,8 @@ import { Groups } from './groups/groups';
 import { Locales } from './locales/locales';
 import { Products } from './products/products';
 import { Request } from './request/request';
+import { Gateways } from './gateways/gateways';
+import { SchemaDefinitions } from './schemaDefinitions/schemaDefinitions';
 
 export class AxonizeApiClient {
   public defaults = new Defaults();
@@ -16,6 +18,8 @@ export class AxonizeApiClient {
   public alarms = new Alarms(this);
   public locales = new Locales(this);
   public groups = new Groups(this);
+  public gateways = new Gateways(this);
+  public schemaDefinitions = new SchemaDefinitions(this);
   public auth: Auth;
 
   constructor(credentials?: IAuthOptions) {
