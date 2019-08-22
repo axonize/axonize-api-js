@@ -10,11 +10,20 @@ export class Gateways {
    */
   constructor(private client: AxonizeApiClient) {}
   /**
-   * Create and Install a Protocol Gateway
+   * Create a Protocol Gateway
    * @param gateway
    */
   public create(gateway: Pick<Gateway, 'name' | 'manufacturer' | 'type' | 'productId'>): Promise<Gateway> {
     return this.client.request.doFetch(this.getGatewayRoute(), { method: 'POST', data: gateway });
+  }
+
+  /**
+   * Install a Protocol Gateway
+   * Should only be run after creation
+   * @param gateway
+   */
+  public install(gatewayId: Pick<Gateway, 'id'>): Promise<Gateway> {
+    return this.client.request.doFetch(this.getODataResource(gatewayId.id)+'/'+'installService', { method: 'POST' });
   }
 
   /**
