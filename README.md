@@ -15,7 +15,16 @@ Or
 $ yarn add @axonize/api
 ```
 
-## Setup
+## Example Usage
+```js
+const {AxonizeApiClient} = require('@axonize/api');
+
+const api = new AxonizeApiClient({clientId: YOUR_CLIENT_ID, clientSecret: YOUR_CLIENT_SECRET});
+
+await api.devices.getDevices()
+```
+
+## Development Setup
 Add a local file in the directory root '.env' to setup your [dotenv](https://github.com/motdotla/dotenv) environment variables
 ```
 # .env
