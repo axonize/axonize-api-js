@@ -3,11 +3,11 @@ import { Auth } from './auth/auth';
 import { IAuthOptions } from './auth/types';
 import { Defaults } from './defaults/defaults';
 import { Devices } from './devices/devices';
+import { Gateways } from './gateways/gateways';
 import { Groups } from './groups/groups';
 import { Locales } from './locales/locales';
 import { Products } from './products/products';
 import { Request } from './request/request';
-import { Gateways } from './gateways/gateways';
 import { SchemaDefinitions } from './schemaDefinitions/schemaDefinitions';
 
 export class AxonizeApiClient {

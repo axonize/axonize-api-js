@@ -1,5 +1,5 @@
 import AxonizeApiClient from '..';
-import { Gateway } from './types';
+import { IGateway } from './types';
 
 export class Gateways {
   /**
@@ -13,7 +13,7 @@ export class Gateways {
    * Create a Protocol Gateway
    * @param gateway
    */
-  public create(gateway: Pick<Gateway, 'name' | 'manufacturer' | 'type' | 'productId'>): Promise<Gateway> {
+  public create(gateway: Pick<IGateway, 'name' | 'manufacturer' | 'type' | 'productId'>): Promise<IGateway> {
     return this.client.request.doFetch(this.getGatewayRoute(), { method: 'POST', data: gateway });
   }
 
@@ -22,7 +22,7 @@ export class Gateways {
    * Should only be run after creation
    * @param gateway
    */
-  public install(gatewayId: Pick<Gateway, 'id'>): Promise<Gateway> {
+  public install(gatewayId: Pick<IGateway, 'id'>): Promise<IGateway> {
     return this.client.request.doFetch(this.getODataResource(gatewayId.id)+'/'+'installService', { method: 'POST' });
   }
 
@@ -30,14 +30,14 @@ export class Gateways {
    * Delete a Protocol Gateway
    * @param id
    */
-  public delete(gatewayId: Pick<Gateway, 'id'>): Promise<undefined> {
+  public delete(gatewayId: Pick<IGateway, 'id'>): Promise<undefined> {
     return this.client.request.doFetch(this.getODataResource(gatewayId.id), { method: 'DELETE' });
   }
 
   /**
    * get Gateway
    */
-  public get(gatewayId: Pick<Gateway, 'id'>): Promise<Gateway> {
+  public get(gatewayId: Pick<IGateway, 'id'>): Promise<IGateway> {
     return this.client.request.doFetch(this.getODataResource(gatewayId.id), { method: 'GET' });
   }
 

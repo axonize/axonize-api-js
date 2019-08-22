@@ -13,10 +13,10 @@ describe('Gateway APIs', () => {
     api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
   
     const gatewayResponse = await api.gateways.create({
-      "name": `dev-http-gateway-api-client-test-${testId}`,
-      "type": "HttpGatewayProducer",
       "manufacturer": testManufacturer,
-      "productId": testProductId
+      "name": `dev-http-gateway-api-client-test-${testId}`,
+      "productId": testProductId,
+      "type": "HttpGatewayProducer",
     })
 
     expect(gatewayResponse).toHaveProperty(
@@ -41,10 +41,10 @@ describe('Gateway APIs', () => {
     api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
   
     const gatewayResponse = await api.gateways.create({
-      "name": `dev-http-gateway-api-client-test-${testId}`,
-      "type": "HttpGatewayProducer",
       "manufacturer": testManufacturer,
+      "name": `dev-http-gateway-api-client-test-${testId}`,
       "productId": testProductId,
+      "type": "HttpGatewayProducer",
     })
 
     expect(gatewayResponse).toHaveProperty(

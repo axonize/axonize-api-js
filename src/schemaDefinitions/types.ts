@@ -4,26 +4,26 @@
 //
 //   "Set quicktype target language"
 
-export interface SchemaDefinition {
+export interface ISchemaDefinition {
     name:       string;
-    schema:     Schema[];
+    schema:     ISchema[];
     appId:      string;
     parserType: string;
 }
 
-export interface Schema {
+export interface ISchema {
     attributePath: string;
     actionType:    string;
-    convertInfo?:  ConvertInfo;
-    event?: SchemaEvent;
+    convertInfo?:  IConvertInfo;
+    event?: ISchemaEvent;
 }
 
-export interface ConvertInfo {
+export interface IConvertInfo {
     functionType: string;
     parameters?:  string[];
 }
 
-export interface SchemaEvent {
+export interface ISchemaEvent {
     name:         string;
     typeCode:     number;
     unit:         string;

@@ -1,6 +1,6 @@
 import Api from '../index';
-import { getCredentialsFromENV } from '../utils/tests';
 import { generateID } from '../utils/id';
+import { getCredentialsFromENV } from '../utils/tests';
 
 test('Test create Schema Definition', (done) => {
   const api = new Api(getCredentialsFromENV());
@@ -9,24 +9,24 @@ test('Test create Schema Definition', (done) => {
   api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
 
   return api.schemaDefinitions.create({
+    "appId": "fb1642c7-0ea5-4f17-b329-7040eb6c2cc1",
     "name": `test_schema_${generateID}`,
+    "parserType": "JsonParser",
     "schema": [
       {
+        "actionType": "CustomId",
         "attributePath": "deviceId",
-        "actionType": "CustomId"
       },
       {
-        "attributePath": "temperature",
         "actionType": "Event",
+        "attributePath": "temperature",
         "event": {
           "name": "Temperature",
           "typeCode": 7,
           "unit": "C"
         }
       }
-    ],
-    "appId": "fb1642c7-0ea5-4f17-b329-7040eb6c2cc1",
-    "parserType": "JsonParser"
+    ]
   }).then(_ => {
     done()
   });

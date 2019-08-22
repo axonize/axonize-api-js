@@ -1,4 +1,4 @@
-export interface Gateway {
+export interface IGateway {
     "@odata.context":      string;
     type:                  string;
     namespace:             string | null;

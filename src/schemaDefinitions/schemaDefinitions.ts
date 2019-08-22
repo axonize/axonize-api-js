@@ -1,5 +1,5 @@
 import AxonizeApiClient from '..';
-import { SchemaDefinition } from './types';
+import { ISchemaDefinition } from './types';
 
 export class SchemaDefinitions {
   /**
@@ -13,7 +13,7 @@ export class SchemaDefinitions {
    * Create and Install a Protocol Gateway
    * @param data configuration data
    */
-  public create(schemaDefinition: SchemaDefinition): Promise<any> {
+  public create(schemaDefinition: ISchemaDefinition): Promise<any> {
     return this.client.request.doFetch(this.getSchemaDefinitionsRoute(), { method: 'POST', data: schemaDefinition });
   }
 
