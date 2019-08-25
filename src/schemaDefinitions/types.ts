@@ -4,6 +4,21 @@
 //
 //   "Set quicktype target language"
 
+export interface ISchemaDefinitionCreationResponse {
+    "@odata.context"?: string;
+    name?:             string;
+    parserType?:       string;
+    id?:               string;
+    appId?:            string;
+    createDate?:       Date;
+    createUser?:       null;
+    updateDate?:       Date;
+    updateUser?:       null;
+    schema?:           ISchema[];
+    options?:          null;
+    jsonSample?:       null;
+}
+
 export interface ISchemaDefinition {
     name:       string;
     schema:     ISchema[];
