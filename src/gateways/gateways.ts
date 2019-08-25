@@ -41,6 +41,15 @@ export class Gateways {
     return this.client.request.doFetch(this.getODataResource(gatewayId.id), { method: 'GET' });
   }
 
+  /**
+   * get Gateways by Manufacturer
+   */
+  public getByManufacturer(manufacturer: Pick<IGateway, 'manufacturer'>): Promise<IGateway> {
+    return this.client.request.doFetch(
+      this.getGatewayRoute() + `?$filter=contains(manufacturer, ${manufacturer.manufacturer})`, 
+    { method: 'GET' });
+  }
+
   private getGatewayRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/gateways`;
   }
