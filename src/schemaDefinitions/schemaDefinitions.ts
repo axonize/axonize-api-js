@@ -10,11 +10,19 @@ export class SchemaDefinitions {
    */
   constructor(private client: AxonizeApiClient) {}
   /**
-   * Create and Install a Protocol Gateway
+   * Create a Schema Definition
    * @param data configuration data
    */
   public create(schemaDefinition: ISchemaDefinition): Promise<ISchemaDefinitionCreationResponse> {
     return this.client.request.doFetch(this.getSchemaDefinitionsRoute(), { method: 'POST', data: schemaDefinition });
+  }
+
+    /**
+   * Update a schema definition
+   * @param data configuration data
+   */
+  public update(schemaDefinitionId: Pick<ISchemaDefinitionCreationResponse, 'id'>, schemaDefinition: Partial<ISchemaDefinition>): Promise<ISchemaDefinitionCreationResponse> {
+    return this.client.request.doFetch(this.getSchemaDefinitionsRoute() + '/' + schemaDefinitionId.id, { method: 'POST', data: schemaDefinition });
   }
 
   /**
