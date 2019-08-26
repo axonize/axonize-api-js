@@ -9,7 +9,12 @@ export class Defaults {
 
   constructor() {
     this.token = '';
-    this.url = 'http://api.dev.axonize.com';
+    const apiUrl = process.env.apiUrl;
+    if (apiUrl) {
+      this.url = apiUrl;
+    } else {
+      throw new Error('missing env variable for apiUrl')
+    }
     this.userAgent = null;
     this.defaultHeaders = {};
     this.internalApiKey = '';
