@@ -9,7 +9,7 @@ export class Defaults {
 
   constructor() {
     this.token = '';
-    this.url = 'https://api.axonize.com';
+    this.url = 'https://api.dev.axonize.com';
     this.userAgent = null;
     this.defaultHeaders = {};
     this.internalApiKey = '';
