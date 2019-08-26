@@ -8,7 +8,7 @@ export interface ISchemaDefinitionCreationResponse {
     "@odata.context"?: string;
     name?:             string;
     parserType?:       string;
-    id?:               string;
+    id:               string;
     appId?:            string;
     createDate?:       Date;
     createUser?:       null;

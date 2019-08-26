@@ -18,6 +18,14 @@ export class SchemaDefinitions {
   }
 
     /**
+   * Delete a Schema Definition
+   * @param data configuration data
+   */
+  public delete(schemaDefinitionId: string): Promise<any> {
+    return this.client.request.doFetch(this.odataRoute(schemaDefinitionId), { method: 'DELETE'});
+  }
+
+    /**
    * Update a schema definition
    * @param data configuration data
    */
@@ -28,11 +36,15 @@ export class SchemaDefinitions {
   /**
    * parseSchemaWithEvent
    */
-  public parseSchemaWithEvent(data: {deviceId: string, payload: string, sendToHub: boolean}) {
+  public parseSchemaWithEvent(data: {deviceId: string, payload: string, sendToHub: boolean}): Promise<{value: string}> {
     return this.client.request.doFetch(this.getSchemaDefinitionsRoute() + '/Parse', { method: 'POST', data});
   }
 
   private getSchemaDefinitionsRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/schemaDefinitions`;
+  }
+
+  private odataRoute(id: string) {
+    return this.getSchemaDefinitionsRoute()+ '/' + id;
   }
 }

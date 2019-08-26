@@ -2,11 +2,17 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
+const createTestProduct = async () => {
+  const api = new Api(getCredentialsFromENV());
+  return api.products.addProduct({name: 'testproductjsapiclient'});
+}
+
 test('Test getProducts method', () => {
   const api = new Api(getCredentialsFromENV());
 
-  return api.products.getProducts().then(products => {
-    expect(!!products.length).toEqual(true);
+  return api.products.getProducts()
+    .then(products => {
+    expect(products.length).toBeGreaterThan(1);
   });
 });
 
@@ -20,24 +26,36 @@ test('Test product not found', async () => {
   }
 });
 
-test('Update product', async () => {
+test('Update product', async (done) => {
+  // Arrange
   const api = new Api(getCredentialsFromENV());
-
-  const products = await api.products.getProducts();
-  const product = products[0];
   const generateId = generateID();
+  const testProduct = await createTestProduct();
 
-  const updatedProduct = await api.products.updateProduct(product.id, { libraryTestProperty: generateId });
+  // Action
+  const updatedProduct = await api.products.updateProduct(testProduct.id, { libraryTestProperty: generateId });
+
+  // Assert
   expect(updatedProduct.libraryTestProperty).toEqual(generateId);
+
+  // Cleanup
+  await api.products.deleteProduct(testProduct.id);
+  done();
 });
 
-test('Attach Schema Definition to a Product', async () => {
+test('Attach Schema Definition to a Product', async (done) => {
+  // Arrange
   const api = new Api(getCredentialsFromENV());
-
-  const products = await api.products.getProducts();
-  const product = products[0];
   const generatedId = generateID();
+  const testProduct = await createTestProduct();
 
-  const updatedProduct = await api.products.updateProduct(product.id, { schemaDefinitionsId: generatedId });
-  expect(updatedProduct.schemaDefinitionsId).toEqual(generatedId);
+  // Action
+  const updatedProduct = await api.products.updateProduct(testProduct.id, { schemaDefinitionsId: generatedId });
+
+  // Assert
+  expect(updatedProduct.libraryTestProperty).toEqual(generatedId);
+
+  // Cleanup
+  await api.products.deleteProduct(testProduct.id);
+  done();
 });

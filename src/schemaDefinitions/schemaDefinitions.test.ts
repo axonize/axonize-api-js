@@ -2,15 +2,13 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
-test('Test create Schema Definition', (done) => {
+test('Test create and delete Schema Definition', (done) => {
   const api = new Api(getCredentialsFromENV());
-
-  api.defaults.setUrl('http://api.dev.axonize.com');
   api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
-
+  const anId = generateID();
   return api.schemaDefinitions.create({
     "appId": "fb1642c7-0ea5-4f17-b329-7040eb6c2cc1",
-    "name": `test_schema_${generateID}`,
+    "name": `test_schema_${anId}`,
     "parserType": "JsonParser",
     "schema": [
       {
@@ -27,7 +25,9 @@ test('Test create Schema Definition', (done) => {
         }
       }
     ]
-  }).then(_ => {
+  }).then(async res => {
+    expect(res.id).toBeDefined();
+    await api.schemaDefinitions.delete(res.id);
     done()
   });
 });
@@ -35,16 +35,18 @@ test('Test create Schema Definition', (done) => {
 test('Test schema definition against example event', (done) => {
   const api = new Api();
 
+  const expectedProductId = '5d595117e3b0c73350a56d71';
   const deviceId = '5d5966f4e3b0c626cc88a15d';
   const payload = JSON.stringify({
     deviceId: 'autoDiscoverytestdevice',
     temperature: 12,
   });
 
-  api.defaults.setUrl('http://api.dev.axonize.com');
   api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
 
-  return api.schemaDefinitions.parseSchemaWithEvent({ deviceId, payload, sendToHub: false }).then(_ => {
+  return api.schemaDefinitions.parseSchemaWithEvent({ deviceId, payload, sendToHub: false }).then(res => {
+    const parseResults = JSON.parse(res.value);
+    expect(parseResults).toHaveProperty([0,'device','productId'], expectedProductId);
     done()
   });
 })

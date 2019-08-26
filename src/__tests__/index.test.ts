@@ -2,7 +2,7 @@ import Api from '../index';
 
 test('Base Configurations', () => {
   const api = new Api();
-  expect(api.defaults.getUrl()).toBe('https://api.axonize.com');
+  expect(api.defaults.getUrl()).toBe(process.env.apiUrl);
 });
 
 test('Set Url method', () => {
