@@ -64,4 +64,36 @@ describe('Gateway APIs', () => {
 
     expect(sendDeletionRequest).not.toThrow()
   });
+
+  test('Test get gateway by manufacturer', async () => {
+    const testId = generateID();
+    const testManufacturer = `api-client-test-${testId}`;
+    const testProductId = '5b990c2221b5bc5244ebde78';
+
+    const api = new Api();
+  
+    api.defaults.setUrl('http://api.dev.axonize.com');
+    api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
+  
+    const gatewayResponse = await api.gateways.create({
+      "manufacturer": testManufacturer,
+      "name": `dev-http-gateway-api-client-test-${testId}`,
+      "productId": testProductId,
+      "type": "HttpGatewayProducer",
+    })
+
+    expect(gatewayResponse).toHaveProperty(
+      'manufacturer', testManufacturer
+    )
+
+    const existingGateway = await api.gateways.getByManufacturer({manufacturer: gatewayResponse.manufacturer});
+
+    expect(existingGateway).toHaveProperty(['value',0,'id'], gatewayResponse.id);
+
+    const sendDeletionRequest = async () => await api.gateways.delete({
+      "id": gatewayResponse.id
+    })
+
+    expect(sendDeletionRequest).not.toThrow()
+  });
 })

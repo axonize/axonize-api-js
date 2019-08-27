@@ -1,5 +1,5 @@
 import AxonizeApiClient from '..';
-import { IGateway } from './types';
+import { IGateway, IGatewayResponse } from './types';
 
 export class Gateways {
   /**
@@ -44,9 +44,9 @@ export class Gateways {
   /**
    * get Gateways by Manufacturer
    */
-  public getByManufacturer(manufacturer: Pick<IGateway, 'manufacturer'>): Promise<IGateway> {
+  public getByManufacturer(manufacturer: Pick<IGateway, 'manufacturer'>): Promise<IGatewayResponse> {
     return this.client.request.doFetch(
-      this.getGatewayRoute() + `?$filter=contains(manufacturer, ${manufacturer.manufacturer})`, 
+      this.getGatewayRoute() + `?$filter=contains(manufacturer, '${manufacturer.manufacturer}')`, 
     { method: 'GET' });
   }
 

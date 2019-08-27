@@ -11,7 +11,7 @@ export class Defaults {
     this.token = '';
     this.url = process && process.env && process.env.apiUrl || 'not set';
     if (this.url === 'not set') {
-      this.url = 'https://api.axonize.com/';
+      this.url = 'https://api.axonize.com';
     }
     this.userAgent = null;
     this.defaultHeaders = {};
