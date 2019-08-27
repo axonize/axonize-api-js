@@ -1,5 +1,6 @@
 # axonize-api-js
 ![CircleCI](https://img.shields.io/circleci/build/github/axonize/axonize-api-js.svg?style=flat-square)
+[![Build status](https://dev.azure.com/soiot/Axonize/_apis/build/status/Axonize%20JS%20API%20Client)](https://dev.azure.com/soiot/Axonize/_build/latest?definitionId=99)
 ![npm](https://img.shields.io/npm/dm/@axonize/api.svg?style=flat-square)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/@axonize/api.svg?style=flat-square)
 
