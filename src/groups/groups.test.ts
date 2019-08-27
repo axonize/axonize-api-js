@@ -2,7 +2,8 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
-jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
+
 
 const createTestGroup = () => {
   const api = new Api(getCredentialsFromENV());

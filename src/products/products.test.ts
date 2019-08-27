@@ -7,7 +7,8 @@ export const createTestProduct = async () => {
   return api.products.addProduct({ name: 'testproductjsapiclient' });
 };
 
-jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
+
 
 describe('Products', () => {
   test('Test getProducts method', () => {

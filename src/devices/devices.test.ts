@@ -1,10 +1,11 @@
 import Api from '../index';
-import { generateID } from '../utils/id';
-import { getCredentialsFromENV } from '../utils/tests';
 import { createTestProduct } from '../products/products.test';
 import { IProduct } from '../products/types';
+import { generateID } from '../utils/id';
+import { getCredentialsFromENV } from '../utils/tests';
 
-jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
+
 
 describe('Devices', () => {
   test('Test basic devices call', () => {
@@ -30,9 +31,10 @@ describe('Devices', () => {
 
     const name = 'jsapiclienttest';
     const newDevice = await api.devices.addDevice({ 
+      id: product.id,
       name, 
-      productId: product.id, 
-      id: product.id }
+      productId: product.id
+    }
     );
     return newDevice;
   };
