@@ -6,8 +6,8 @@
   "main": "lib/index.js",
   "types": "lib/types/index.d.ts",
   "scripts": {
-    "test": "jest -i --config jestconfig.json",
-    "watch:test": "jest -i --config jestconfig.json --watch",
+    "test": "jest --config jestconfig.json",
+    "watch:test": "jest --config jestconfig.json --watch",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",

@@ -1,6 +1,8 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
 
+jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+
 describe('Gateway APIs', () => {
   test('Test create and delete gateway', async () => {
     const testId = generateID();

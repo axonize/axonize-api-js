@@ -1,51 +1,86 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
+import { createTestProduct } from '../products/products.test';
+import { IProduct } from '../products/types';
 
-test('Test basic devices call', () => {
-  const api = new Api(getCredentialsFromENV());
+jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
 
-  return api.devices.getDevices().then(devices => {
-    expect(!!devices.length).toEqual(true);
+describe('Devices', () => {
+  test('Test basic devices call', () => {
+    const api = new Api(getCredentialsFromENV());
+
+    return api.devices.getDevices().then(devices => {
+      expect(!!devices.length).toEqual(true);
+    });
   });
-});
 
-test('Test device not found', async () => {
-  const api = new Api(getCredentialsFromENV());
+  test('Test device not found', async () => {
+    const api = new Api(getCredentialsFromENV());
 
-  try {
-    await api.devices.getDevice('2');
-  } catch (e) {
-    expect(e.statusCode).toEqual(404);
-  }
-});
+    try {
+      await api.devices.getDevice('2');
+    } catch (e) {
+      expect(e.statusCode).toEqual(404);
+    }
+  });
 
-test('Add device without productId', async () => {
-  const api = new Api(getCredentialsFromENV());
-  const name = 'Library Test Device';
+  const createNewDevice = async (product: IProduct) => {
+    const api = new Api(getCredentialsFromENV());
 
-  try {
-    await api.devices.addDevice({ name });
-  } catch (e) {
-    expect(e.statusCode).toEqual(400);
-  }
-});
+    const name = 'jsapiclienttest';
+    const newDevice = await api.devices.addDevice({ 
+      name, 
+      productId: product.id, 
+      id: product.id }
+    );
+    return newDevice;
+  };
 
-test('Update device', async () => {
-  const api = new Api(getCredentialsFromENV());
+  test('Create device', async done => {
+    const api = new Api(getCredentialsFromENV());
 
-  const devices = await api.devices.getDevices();
-  const device = devices[0];
-  const generateId = generateID();
+    const testProduct = await createTestProduct();
+    const testDevice = await createNewDevice(testProduct);
 
-  const updatedDevice = await api.devices.updateDevice(device.id, { libraryTestProperty: generateId });
-  expect(updatedDevice.libraryTestProperty).toEqual(generateId);
-});
+    expect(testDevice).toHaveProperty('id');
 
-test('Generate SAS Token', async () => {
-  const api = new Api(getCredentialsFromENV());
-  const deviceId = process.env.deviceID || '';
+    await api.devices.deleteDevice(testDevice.id);
+    await api.products.deleteProduct(testProduct.id);
+    done();
+  });
 
-  const token = await api.devices.generateSASToken(deviceId);
-  expect(token.includes(deviceId)).toEqual(true);
+  test('Update device', async done => {
+    const api = new Api(getCredentialsFromENV());
+
+    const testProduct = await createTestProduct();
+    const testDevice = await createNewDevice(testProduct);
+    const generatedId = generateID();
+
+    const inActiveUpdatedDevice = await api.devices.updateDevice(testDevice.id, { active: false });
+    expect(inActiveUpdatedDevice).toHaveProperty('active', false);
+    const activeUpdatedDevice = await api.devices.updateDevice(testDevice.id, { active: true });
+    expect(activeUpdatedDevice).toHaveProperty('active', true);
+
+    await api.devices.deleteDevice(testDevice.id);
+    await api.products.deleteProduct(testProduct.id);
+
+    done();
+  });
+
+  test('Generate SAS Token', async (done) => {
+    const api = new Api(getCredentialsFromENV());
+    const deviceId = process.env.deviceID || '';
+
+    const testProduct = await createTestProduct();
+    const testDevice = await createNewDevice(testProduct);
+
+    const token = await api.devices.generateSASToken(testDevice.id);
+    expect(token).toMatch(/SharedAccessSignature/)
+
+    await api.devices.deleteDevice(testDevice.id);
+    await api.products.deleteProduct(testProduct.id);
+
+    done();
+  });
 });

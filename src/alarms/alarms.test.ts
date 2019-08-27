@@ -2,6 +2,8 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
+jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+
 test('Test getAlarms method', () => {
   const api = new Api(getCredentialsFromENV());
 
@@ -20,13 +22,39 @@ test('Test alarm not found', async () => {
   }
 });
 
-test('Update alarm', async () => {
+const createTestAlarm = async () => {
+  const api = new Api(getCredentialsFromENV());
+  return api.alarms.addAlarm({});
+}
+
+test('Create and Delete Alarm', async (done) => {
+  // Arrange
   const api = new Api(getCredentialsFromENV());
 
-  const alarms = await api.alarms.getAlarms();
-  const alarm = alarms[0];
+  // Action
+  const testAlarm = await createTestAlarm();
+
+  // Assert
+  expect(testAlarm).toHaveProperty('id');
+
+  // Cleanup
+  await api.alarms.deleteAlarm(testAlarm.id);
+  done();
+})
+
+test('Update alarm', async (done) => {
+  // Arrange
+  const api = new Api(getCredentialsFromENV());
+  const testAlarm = await createTestAlarm();
   const generateId = generateID();
 
-  const updatedAlarm = await api.alarms.updateAlarm(alarm.id, { message: generateId });
+  // Action
+  const updatedAlarm = await api.alarms.updateAlarm(testAlarm.id, { message: generateId });
+
+  // Assert
   expect(updatedAlarm.message).toEqual(generateId);
+
+  // Cleanup
+  await api.alarms.deleteAlarm(testAlarm.id);
+  done();
 });

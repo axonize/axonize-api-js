@@ -2,6 +2,13 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
+jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+
+const createTestGroup = () => {
+  const api = new Api(getCredentialsFromENV());
+  return api.groups.addGroup({name: 'jsapiclienttestgroup'});
+}
+
 test('Test getGroups method', () => {
   const api = new Api(getCredentialsFromENV());
 
@@ -20,13 +27,19 @@ test('Test group not found', async () => {
   }
 });
 
-test('Update product', async () => {
+test('Create, Update, and Delete Group', async (done) => {
+  // Arrange
   const api = new Api(getCredentialsFromENV());
-
-  const groups = await api.groups.getGroups();
-  const group = groups[0];
   const generateId = generateID();
+  const testGroup = await createTestGroup();
 
-  const updatedGroup = await api.groups.updateGroup(group.id, { info: generateId });
+  // Action
+  const updatedGroup = await api.groups.updateGroup(testGroup.id, { info: generateId });
+
+  // Assert
   expect(updatedGroup.info).toEqual(generateId);
+
+  // Cleanup
+  await api.groups.deleteGroup(testGroup.id);
+  done();
 });
