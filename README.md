@@ -31,8 +31,9 @@ Add a local file in the directory root '.env' to setup your [dotenv](https://git
 # Axonize API Client dotenv environment variables
 clientId=CLIENT_ID
 clientSecret=CLIENT_SECRET
-deviceID=A_DEVICE_ID
 internalApiKey=INTERNAL_API_KEY
+apiUrl=AXONIZE_API_URL_LIKE_http://api.dev.axonize.com/
+testTimeout=60000
 ```
 
 ## Test

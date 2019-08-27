@@ -70,7 +70,6 @@ describe('Devices', () => {
 
   test('Generate SAS Token', async (done) => {
     const api = new Api(getCredentialsFromENV());
-    const deviceId = process.env.deviceID || '';
 
     const testProduct = await createTestProduct();
     const testDevice = await createNewDevice(testProduct);
