@@ -1,6 +1,6 @@
 export interface IGateway {
     "@odata.context":      string;
-    type:                  string;
+    type:                  'HttpGatewayProducer' | string;
     namespace:             string | null;
     name:                  string;
     datastructureEndpoint: string | null;
