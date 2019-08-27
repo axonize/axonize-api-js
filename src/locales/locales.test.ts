@@ -1,6 +1,8 @@
 import Api from '../index';
 import { getCredentialsFromENV } from '../utils/tests';
 
+jest.setTimeout(parseInt(process.env.testTimeout || '60000'));
+
 test('Test getLocales', () => {
   const api = new Api(getCredentialsFromENV());
 
