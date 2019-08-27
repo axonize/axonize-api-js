@@ -9,11 +9,9 @@ export class Defaults {
 
   constructor() {
     this.token = '';
-    const apiUrl = process.env.apiUrl;
-    if (apiUrl) {
-      this.url = apiUrl;
-    } else {
-      throw new Error('missing env variable for apiUrl')
+    this.url = process && process.env && process.env.apiUrl || 'not set';
+    if (this.url === 'not set') {
+      this.url = 'https://api.axonize.com/';
     }
     this.userAgent = null;
     this.defaultHeaders = {};
