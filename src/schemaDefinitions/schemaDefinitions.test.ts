@@ -1,6 +1,40 @@
 import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
+test('Test get Schema Definition', (done) => {
+  const api = new Api(getCredentialsFromENV());
+  api.defaults.setInternalApiKey(process.env.internalApiKey || 'failure')
+  const anId = generateID();
+  return api.schemaDefinitions.create({
+    "appId": "fb1642c7-0ea5-4f17-b329-7040eb6c2cc1",
+    "name": `test_schema_${anId}`,
+    "parserType": "JsonParser",
+    "schema": [
+      {
+        "actionType": "CustomId",
+        "attributePath": "deviceId",
+      },
+      {
+        "actionType": "Event",
+        "attributePath": "temperature",
+        "event": {
+          "name": "Temperature",
+          "typeCode": 7,
+          "unit": "C"
+        }
+      }
+    ]
+  }).then(res => {
+    expect(res.id).toBeDefined();
+    return api.schemaDefinitions.get(res.id);
+  }).then(res => {
+    expect(res.id).toBeDefined();
+    return api.schemaDefinitions.delete(res.id);
+  }
+  ).then(() => {
+    done();
+  });
+});
 
 test('Test create and delete Schema Definition', (done) => {
   const api = new Api(getCredentialsFromENV());

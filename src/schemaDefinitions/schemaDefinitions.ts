@@ -1,5 +1,6 @@
 import AxonizeApiClient from '..';
 import { ISchemaDefinition, ISchemaDefinitionCreationResponse } from './types';
+import { AxiosRequestConfig } from 'axios';
 
 export class SchemaDefinitions {
   /**
@@ -9,6 +10,13 @@ export class SchemaDefinitions {
    * @param client
    */
   constructor(private client: AxonizeApiClient) {}
+
+  private genericOdataReq<T>(config: AxiosRequestConfig) {
+    return (schemaDefinitionId: string): Promise<T> => this.client.request.doFetch(this.odataRoute(schemaDefinitionId), config);
+  }
+
+  public get = this.genericOdataReq<ISchemaDefinitionCreationResponse>({method: 'GET'});
+
   /**
    * Create a Schema Definition
    * @param data configuration data
@@ -19,11 +27,8 @@ export class SchemaDefinitions {
 
   /**
    * Delete a Schema Definition
-   * @param data configuration data
    */
-  public delete(schemaDefinitionId: string): Promise<any> {
-    return this.client.request.doFetch(this.odataRoute(schemaDefinitionId), { method: 'DELETE' });
-  }
+  public delete = this.genericOdataReq<any>({method: 'delete'});
 
   /**
    * Update a schema definition
