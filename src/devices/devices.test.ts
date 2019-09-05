@@ -6,13 +6,12 @@ import { getCredentialsFromENV } from '../utils/tests';
 
 jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
 
-
 describe('Devices', () => {
   test.skip('Test get all devices', async () => {
     const api = new Api(getCredentialsFromENV());
 
     const devices = await api.devices.getDevices();
-    
+
     expect(devices.length).toBeGreaterThan(0);
   });
 
@@ -30,12 +29,11 @@ describe('Devices', () => {
     const api = new Api(getCredentialsFromENV());
 
     const name = 'jsapiclienttest';
-    const newDevice = await api.devices.addDevice({ 
+    const newDevice = await api.devices.addDevice({
       id: product.id,
-      name, 
-      productId: product.id
-    }
-    );
+      name,
+      productId: product.id,
+    });
     return newDevice;
   };
 
@@ -70,14 +68,14 @@ describe('Devices', () => {
     done();
   });
 
-  test('Generate SAS Token', async (done) => {
+  test('Generate SAS Token', async done => {
     const api = new Api(getCredentialsFromENV());
 
     const testProduct = await createTestProduct();
     const testDevice = await createNewDevice(testProduct);
 
     const token = await api.devices.generateSASToken(testDevice.id);
-    expect(token).toMatch(/SharedAccessSignature/)
+    expect(token).toMatch(/SharedAccessSignature/);
 
     await api.devices.deleteDevice(testDevice.id);
     await api.products.deleteProduct(testProduct.id);

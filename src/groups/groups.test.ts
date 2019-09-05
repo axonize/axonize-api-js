@@ -4,11 +4,10 @@ import { getCredentialsFromENV } from '../utils/tests';
 
 jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
 
-
 const createTestGroup = () => {
   const api = new Api(getCredentialsFromENV());
-  return api.groups.addGroup({name: 'jsapiclienttestgroup'});
-}
+  return api.groups.addGroup({ name: 'jsapiclienttestgroup' });
+};
 
 test('Test getGroups method', () => {
   const api = new Api(getCredentialsFromENV());
@@ -28,7 +27,7 @@ test('Test group not found', async () => {
   }
 });
 
-test('Create, Update, and Delete Group', async (done) => {
+test('Create, Update, and Delete Group', async done => {
   // Arrange
   const api = new Api(getCredentialsFromENV());
   const generateId = generateID();

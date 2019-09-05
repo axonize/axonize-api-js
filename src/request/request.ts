@@ -34,7 +34,7 @@ export class Request {
     }
 
     if (this.client.defaults.getInternalApiKey()) {
-      headers[HEADER_INTERNAL_API_KEY] = this.client.defaults.getInternalApiKey()
+      headers[HEADER_INTERNAL_API_KEY] = this.client.defaults.getInternalApiKey();
     }
 
     if (this.client.defaults.getUserAgent()) {

@@ -9,7 +9,6 @@ export const createTestProduct = async () => {
 
 jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
 
-
 describe('Products', () => {
   test('Test getProducts method', () => {
     const api = new Api(getCredentialsFromENV());

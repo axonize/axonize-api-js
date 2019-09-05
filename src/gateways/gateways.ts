@@ -23,7 +23,9 @@ export class Gateways {
    * @param gateway
    */
   public install(gatewayId: Pick<IGateway, 'id'>): Promise<IGateway> {
-    return this.client.request.doFetch(this.getODataResource(gatewayId.id)+'/'+'installService', { method: 'POST' });
+    return this.client.request.doFetch(this.getODataResource(gatewayId.id) + '/' + 'installService', {
+      method: 'POST',
+    });
   }
 
   /**
@@ -46,8 +48,9 @@ export class Gateways {
    */
   public getByManufacturer(manufacturer: Pick<IGateway, 'manufacturer'>): Promise<IGatewayResponse> {
     return this.client.request.doFetch(
-      this.getGatewayRoute() + `?$filter=contains(manufacturer, '${manufacturer.manufacturer}')`, 
-    { method: 'GET' });
+      this.getGatewayRoute() + `?$filter=contains(manufacturer, '${manufacturer.manufacturer}')`,
+      { method: 'GET' },
+    );
   }
 
   private getGatewayRoute() {
@@ -55,6 +58,6 @@ export class Gateways {
   }
 
   private getODataResource(id: string) {
-    return this.getGatewayRoute() + '/'+ id
+    return this.getGatewayRoute() + '/' + id;
   }
 }

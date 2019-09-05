@@ -25,9 +25,9 @@ test('Test alarm not found', async () => {
 const createTestAlarm = async () => {
   const api = new Api(getCredentialsFromENV());
   return api.alarms.addAlarm({});
-}
+};
 
-test('Create and Delete Alarm', async (done) => {
+test('Create and Delete Alarm', async done => {
   // Arrange
   const api = new Api(getCredentialsFromENV());
 
@@ -40,9 +40,9 @@ test('Create and Delete Alarm', async (done) => {
   // Cleanup
   await api.alarms.deleteAlarm(testAlarm.id);
   done();
-})
+});
 
-test('Update alarm', async (done) => {
+test('Update alarm', async done => {
   // Arrange
   const api = new Api(getCredentialsFromENV());
   const testAlarm = await createTestAlarm();

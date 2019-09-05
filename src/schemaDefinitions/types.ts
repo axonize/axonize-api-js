@@ -5,49 +5,49 @@
 //   "Set quicktype target language"
 
 export interface ISchemaDefinitionCreationResponse {
-    "@odata.context"?: string;
-    name?:             string;
-    parserType?:       string;
-    id:               string;
-    appId?:            string;
-    createDate?:       Date;
-    createUser?:       null;
-    updateDate?:       Date;
-    updateUser?:       null;
-    schema?:           ISchema[];
-    options?:          null;
-    jsonSample?: IJSONSample
+  '@odata.context'?: string;
+  name?: string;
+  parserType?: string;
+  id: string;
+  appId?: string;
+  createDate?: Date;
+  createUser?: null;
+  updateDate?: Date;
+  updateUser?: null;
+  schema?: ISchema[];
+  options?: null;
+  jsonSample?: IJSONSample;
 }
 
 interface IJSONSample {
-    content: string,
-    name: string,
-    updateDate: string,
+  content: string;
+  name: string;
+  updateDate: string;
 }
 
 export interface ISchemaDefinition {
-    name:       string;
-    schema:     ISchema[];
-    appId:      string;
-    parserType: string;
+  name: string;
+  schema: ISchema[];
+  appId: string;
+  parserType: string;
 
-    jsonSample?: IJSONSample
+  jsonSample?: IJSONSample;
 }
 
 export interface ISchema {
-    attributePath: string;
-    actionType:    string;
-    convertInfo?:  IConvertInfo;
-    event?: ISchemaEvent;
+  attributePath: string;
+  actionType: string;
+  convertInfo?: IConvertInfo;
+  event?: ISchemaEvent;
 }
 
 export interface IConvertInfo {
-    functionType: string;
-    parameters?:  string[];
+  functionType: string;
+  parameters?: string[];
 }
 
 export interface ISchemaEvent {
-    name:         string;
-    typeCode:     number;
-    unit:         string;
+  name: string;
+  typeCode: number;
+  unit: string;
 }
