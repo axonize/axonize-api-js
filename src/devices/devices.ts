@@ -15,8 +15,8 @@ export class Devices {
    * @returns List of devices according to your permissions.
    */
   public async getDevices(): Promise<IDevice[]> {
-    const data = await this.client.request.doFetch(this.getDevicesRoute(), { method: 'GET' });
-    return data.value;
+      const {value} = await this.client.request.doFetch(this.getDevicesRoute(), { method: 'GET' });
+      return value;
   }
 
   /**

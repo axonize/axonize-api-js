@@ -8,12 +8,12 @@ jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
 
 
 describe('Devices', () => {
-  test('Test basic devices call', () => {
+  test.skip('Test get all devices', async () => {
     const api = new Api(getCredentialsFromENV());
 
-    return api.devices.getDevices().then(devices => {
-      expect(!!devices.length).toEqual(true);
-    });
+    const devices = await api.devices.getDevices();
+    
+    expect(devices.length).toBeGreaterThan(0);
   });
 
   test('Test device not found', async () => {
