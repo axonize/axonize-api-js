@@ -16,7 +16,13 @@ export interface ISchemaDefinitionCreationResponse {
     updateUser?:       null;
     schema?:           ISchema[];
     options?:          null;
-    jsonSample?:       null;
+    jsonSample?: IJSONSample
+}
+
+interface IJSONSample {
+    content: string,
+    name: string,
+    updateDate: string,
 }
 
 export interface ISchemaDefinition {
@@ -24,6 +30,8 @@ export interface ISchemaDefinition {
     schema:     ISchema[];
     appId:      string;
     parserType: string;
+
+    jsonSample?: IJSONSample
 }
 
 export interface ISchema {
