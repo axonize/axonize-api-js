@@ -31,7 +31,7 @@ export class Devices {
    * Adds a device to a application.
    * @param data The initial device data.
    */
-  public addDevice(data: IDevice): Promise<IDevice> {
+  public addDevice(data: Partial<IDevice>): Promise<IDevice> {
     return this.client.request.doFetch(this.getDevicesRoute(), { method: 'POST', data });
   }
 

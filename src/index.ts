@@ -1,4 +1,5 @@
 import { Alarms } from './alarms/alarms';
+import { Applications } from './applications/applications';
 import { Auth } from './auth/auth';
 import { IAuthOptions } from './auth/types';
 import { Defaults } from './defaults/defaults';
@@ -20,6 +21,8 @@ export class AxonizeApiClient {
   public groups = new Groups(this);
   public gateways = new Gateways(this);
   public schemaDefinitions = new SchemaDefinitions(this);
+  public applications = new Applications(this);
+
   public auth: Auth;
 
   constructor(credentials?: IAuthOptions) {
