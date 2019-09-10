@@ -26,7 +26,7 @@ jobs:
           command: npm test
 
       - store_test_results:
-          path: .
+          path: test-results
 
       - save_cache:
           paths:
