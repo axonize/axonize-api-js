@@ -5,5 +5,5 @@
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(tsx?)$",
   "moduleFileExtensions": ["ts", "js", "json", "node"],
   "setupFiles": ["dotenv/config"],
-  "reporters": [ "default", ["jest-junit", {"jestJunitOutputDir": "test-results/jest" }] ]
+  "reporters": [ "default", "jest-junit" ]
 }
