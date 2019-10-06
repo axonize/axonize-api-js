@@ -53,6 +53,15 @@ export class Gateways {
     );
   }
 
+  /**
+   * get Gateways by productId
+   */
+  public getByProductId(productId: 'string'): Promise<IGatewayResponse> {
+    return this.client.request.doFetch(this.getGatewayRoute() + `?$filter=contains(productId, '${productId}')`, {
+      method: 'GET',
+    });
+  }
+
   private getGatewayRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/gateways`;
   }
