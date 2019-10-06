@@ -35,10 +35,10 @@ export class SchemaDefinitions {
    * @param data configuration data
    */
   public update(
-    schemaDefinitionId: Pick<ISchemaDefinitionCreationResponse, 'id'>,
+    schemaDefinitionId: string,
     schemaDefinition: Partial<ISchemaDefinition>,
   ): Promise<ISchemaDefinitionCreationResponse> {
-    return this.client.request.doFetch(this.getSchemaDefinitionsRoute() + '/' + schemaDefinitionId.id, {
+    return this.client.request.doFetch(this.getSchemaRoute(schemaDefinitionId), {
       data: schemaDefinition,
       method: 'PATCH',
     });
@@ -59,12 +59,12 @@ export class SchemaDefinitions {
     return `${this.client.defaults.getODataBaseRoute()}/schemaDefinitions`;
   }
 
-  private odataRoute(id: string) {
-    return this.getSchemaDefinitionsRoute() + '/' + id;
+  private getSchemaRoute(id: string) {
+    return `${this.getSchemaDefinitionsRoute()}/${id}`;
   }
 
   private genericOdataReq<T>(config: AxiosRequestConfig) {
     return (schemaDefinitionId: string): Promise<T> =>
-      this.client.request.doFetch(this.odataRoute(schemaDefinitionId), config);
+      this.client.request.doFetch(this.getSchemaRoute(schemaDefinitionId), config);
   }
 }
