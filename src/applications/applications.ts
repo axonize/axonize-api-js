@@ -49,7 +49,7 @@ export class Applications {
    * @param id The application ID.
    */
   public async getAppSecret(id: string): Promise<string> {
-    const { value } =  await this.client.request.doFetch(this.getApplicationAppSecret(id), { method: 'GET' });
+    const { value } = await this.client.request.doFetch(this.getApplicationAppSecret(id), { method: 'GET' });
     return value;
   }
 

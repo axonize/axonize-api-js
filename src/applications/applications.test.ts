@@ -1,4 +1,3 @@
-
 import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
@@ -23,7 +22,7 @@ test('Test application not found', async () => {
   }
 });
 
-// ! Those test not working because the API 
+// ! Those test not working because the API
 
 // const createTestApplication = async () => {
 //   const api = new Api(getCredentialsFromENV());

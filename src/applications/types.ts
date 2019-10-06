@@ -1,4 +1,4 @@
-import { IServiceProperty } from "../types/additionalProperties";
+import { IServiceProperty } from '../types/additionalProperties';
 
 export interface IApplication {
   name: string;

@@ -1,4 +1,4 @@
-import { IValueRange } from "../products/types";
+import { IValueRange } from '../products/types';
 
 export interface IAdditionalProperty {
   id?: string;

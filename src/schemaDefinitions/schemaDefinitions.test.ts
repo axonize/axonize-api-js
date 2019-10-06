@@ -2,7 +2,6 @@ import Api from '../index';
 import { generateID } from '../utils/id';
 import { getCredentialsFromENV } from '../utils/tests';
 
-
 jest.setTimeout(parseInt(process.env.testTimeout || '60000', 10));
 
 test('Test get Schema Definition', done => {
