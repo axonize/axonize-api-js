@@ -9,6 +9,7 @@ export class Gateways {
    * @param client
    */
   constructor(private client: AxonizeApiClient) {}
+  
   /**
    * Create a Protocol Gateway
    * @param gateway
@@ -18,12 +19,20 @@ export class Gateways {
   }
 
   /**
+   * Create a Protocol Gateway and install it.
+   * @param gateway
+   */
+  public createAndInstall(gateway: IGateway): Promise<IGateway> {
+    return this.client.request.doFetch(this.getGatewayCreateAndInstallRoute(), { method: 'POST', data: { gateway }});
+  }
+
+  /**
    * Install a Protocol Gateway
    * Should only be run after creation
    * @param gateway
    */
-  public install(gatewayId: Pick<IGateway, 'id'>): Promise<IGateway> {
-    return this.client.request.doFetch(this.getODataResource(gatewayId.id) + '/' + 'installService', {
+  public install(gatewayId: string): Promise<IGateway> {
+    return this.client.request.doFetch(this.getODataResource(gatewayId) + '/' + 'installService', {
       method: 'POST',
     });
   }
@@ -65,6 +74,11 @@ export class Gateways {
   private getGatewayRoute() {
     return `${this.client.defaults.getODataBaseRoute()}/gateways`;
   }
+
+  private getGatewayCreateAndInstallRoute() {
+    return `${this.client.defaults.getODataBaseRoute()}/gateways/CreateAndInstall`;
+  }
+
 
   private getODataResource(id: string) {
     return this.getGatewayRoute() + '/' + id;
