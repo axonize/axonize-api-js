@@ -24,8 +24,8 @@ export class Devices {
    * Returns the desired device according to the ID.
    * @param id The device ID.
    */
-  public getDevice(id: string): Promise<IDevice> {
-    return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'GET' });
+  public getDevice(id: string, options: AxiosRequestConfig = {}): Promise<IDevice> {
+    return this.client.request.doFetch(this.getDeviceRoute(id), { method: 'GET', ...options });
   }
 
   /**
