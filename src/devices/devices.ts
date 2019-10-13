@@ -1,3 +1,4 @@
+import { AxiosRequestConfig } from 'axios';
 import AxonizeApiClient from '..';
 import { IDevice } from './types';
 
@@ -14,8 +15,8 @@ export class Devices {
    * Get the devices according to your permissions.
    * @returns List of devices according to your permissions.
    */
-  public async getDevices(): Promise<IDevice[]> {
-    const { value } = await this.client.request.doFetch(this.getDevicesRoute(), { method: 'GET' });
+  public async getDevices(options: AxiosRequestConfig = {}): Promise<IDevice[]> {
+    const { value } = await this.client.request.doFetch(this.getDevicesRoute(), { method: 'GET', ...options });
     return value;
   }
 
