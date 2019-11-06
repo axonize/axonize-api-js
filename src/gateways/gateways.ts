@@ -23,7 +23,7 @@ export class Gateways {
    * @param gateway
    */
   public createAndInstall(gateway: IGateway): Promise<IGateway> {
-    return this.client.request.doFetch(this.getGatewayCreateAndInstallRoute(), { method: 'POST', data:  gateway });
+    return this.client.request.doFetch(this.getGatewayCreateAndInstallRoute(), { method: 'POST', data: gateway });
   }
 
   /**
